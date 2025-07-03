@@ -26,12 +26,3 @@ Install the dependencies from `requirements.txt` and run the main script:
 pip install -r requirements.txt
 python main.py
 ```
-
-## Building an executable
-PyInstaller is used to create a Windows executable. Run the following command from the repository root:
-
-```bash
-pyinstaller main.spec
-```
-
-The resulting `main.exe` will be placed in the `dist` directory and can be executed from the terminal without Python installed.
