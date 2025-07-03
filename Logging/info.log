@@ -1,0 +1,858 @@
+2024-12-30 18:59:39 INFO: Application started
+2024-12-30 18:59:40 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2024-12-30 18:59:40 INFO: Processing Symobl ES
+2024-12-30 19:02:08 INFO: Application started
+2024-12-30 19:02:09 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2024-12-30 19:02:09 INFO: Processing Symobl ES
+2025-05-05 13:53:38 INFO: Application started
+2025-05-05 13:53:51 INFO: Application started
+2025-05-05 13:54:28 INFO: Application started
+2025-05-05 13:54:29 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-05 13:54:29 INFO: Processing Symobl ES
+2025-05-05 16:04:52 INFO: Application started
+2025-05-05 16:04:52 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-05 16:05:03 INFO: Application started
+2025-05-05 16:05:03 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-05 16:05:12 INFO: Application started
+2025-05-05 16:05:12 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-05 16:05:31 INFO: Application started
+2025-05-05 16:05:32 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-09 13:18:01 INFO: Application started
+2025-05-09 13:18:02 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-09 13:18:02 INFO: Processing Symobl ES
+2025-05-09 13:19:01 INFO: Application started
+2025-05-09 13:19:01 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-09 13:19:01 INFO: Processing Symobl ES
+2025-05-09 13:22:24 INFO: Application started
+2025-05-09 13:22:24 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-09 13:22:24 INFO: Processing Symobl ES
+2025-05-09 13:22:41 INFO: Application started
+2025-05-09 13:22:41 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-09 13:22:41 INFO: Processing Symobl ES
+2025-05-09 13:23:07 INFO: Application started
+2025-05-09 13:23:07 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-09 13:23:07 INFO: Processing Symobl ES
+2025-05-09 13:23:17 INFO: Application started
+2025-05-09 13:23:17 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-09 13:23:17 INFO: Processing Symobl ES
+2025-05-09 13:23:29 INFO: Application started
+2025-05-09 13:23:29 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-09 13:23:29 INFO: Processing Symobl ES
+2025-05-09 13:36:22 INFO: Application started
+2025-05-09 13:36:23 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-09 13:36:23 INFO: Processing Symobl ES
+2025-05-09 13:37:59 INFO: Application started
+2025-05-09 13:38:00 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-09 13:38:00 INFO: Processing Symobl ES
+2025-05-09 14:02:00 INFO: *************************************
+2025-05-09 14:02:00 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-09 14:02:00 INFO: Processing Symobl ES
+2025-05-10 01:12:42 INFO: Reconnected to TWS
+2025-05-20 12:25:39 INFO: Application started
+2025-05-20 12:25:40 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-20 12:25:40 INFO: Processing Symobl ES
+2025-05-20 12:32:15 INFO: Application started
+2025-05-20 12:32:15 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-20 12:32:15 INFO: Processing Symobl ES
+2025-05-20 12:46:16 INFO: *************************************
+2025-05-20 12:46:16 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 12:46:16 INFO: Processing Symobl ES
+2025-05-20 13:01:16 INFO: *************************************
+2025-05-20 13:01:16 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 13:01:16 INFO: Processing Symobl ES
+2025-05-20 13:16:17 INFO: *************************************
+2025-05-20 13:16:17 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 13:16:17 INFO: Processing Symobl ES
+2025-05-20 13:31:17 INFO: *************************************
+2025-05-20 13:31:17 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 13:31:17 INFO: Processing Symobl ES
+2025-05-20 13:46:18 INFO: *************************************
+2025-05-20 13:46:18 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 13:46:18 INFO: Processing Symobl ES
+2025-05-20 14:01:18 INFO: *************************************
+2025-05-20 14:01:18 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 14:01:18 INFO: Processing Symobl ES
+2025-05-20 14:16:19 INFO: *************************************
+2025-05-20 14:16:19 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 14:16:19 INFO: Processing Symobl ES
+2025-05-20 14:31:19 INFO: *************************************
+2025-05-20 14:31:19 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 14:31:19 INFO: Processing Symobl ES
+2025-05-20 14:46:20 INFO: *************************************
+2025-05-20 14:46:20 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 14:46:20 INFO: Processing Symobl ES
+2025-05-20 15:01:20 INFO: *************************************
+2025-05-20 15:01:20 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 15:01:20 INFO: Processing Symobl ES
+2025-05-20 15:16:21 INFO: *************************************
+2025-05-20 15:16:21 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 15:16:21 INFO: Processing Symobl ES
+2025-05-20 15:31:21 INFO: *************************************
+2025-05-20 15:31:21 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 15:31:21 INFO: Processing Symobl ES
+2025-05-20 15:46:22 INFO: *************************************
+2025-05-20 15:46:22 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 15:46:22 INFO: Processing Symobl ES
+2025-05-20 16:01:22 INFO: *************************************
+2025-05-20 16:01:22 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 16:01:22 INFO: Processing Symobl ES
+2025-05-20 16:16:22 INFO: *************************************
+2025-05-20 16:16:22 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 16:16:22 INFO: Processing Symobl ES
+2025-05-20 16:31:23 INFO: *************************************
+2025-05-20 16:31:23 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 16:31:23 INFO: Processing Symobl ES
+2025-05-20 16:46:23 INFO: *************************************
+2025-05-20 16:46:23 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 16:46:23 INFO: Processing Symobl ES
+2025-05-20 18:00:24 INFO: *************************************
+2025-05-20 18:00:24 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 18:00:24 INFO: Processing Symobl ES
+2025-05-20 18:01:24 INFO: *************************************
+2025-05-20 18:01:24 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 18:01:24 INFO: Processing Symobl ES
+2025-05-20 18:02:24 INFO: *************************************
+2025-05-20 18:02:24 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 18:02:24 INFO: Processing Symobl ES
+2025-05-20 18:03:25 INFO: *************************************
+2025-05-20 18:03:25 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 18:03:25 INFO: Processing Symobl ES
+2025-05-20 18:04:25 INFO: *************************************
+2025-05-20 18:04:25 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 18:04:25 INFO: Processing Symobl ES
+2025-05-20 18:05:25 INFO: *************************************
+2025-05-20 18:05:25 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 18:05:25 INFO: Processing Symobl ES
+2025-05-20 18:06:26 INFO: *************************************
+2025-05-20 18:06:26 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 18:06:26 INFO: Processing Symobl ES
+2025-05-20 18:07:26 INFO: *************************************
+2025-05-20 18:07:26 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 18:07:26 INFO: Processing Symobl ES
+2025-05-20 18:08:26 INFO: *************************************
+2025-05-20 18:08:26 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 18:08:26 INFO: Processing Symobl ES
+2025-05-20 18:09:27 INFO: *************************************
+2025-05-20 18:09:27 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 18:09:27 INFO: Processing Symobl ES
+2025-05-20 18:10:27 INFO: *************************************
+2025-05-20 18:10:27 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 18:10:27 INFO: Processing Symobl ES
+2025-05-20 18:11:28 INFO: *************************************
+2025-05-20 18:11:28 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 18:11:28 INFO: Processing Symobl ES
+2025-05-20 20:31:28 INFO: *************************************
+2025-05-20 20:31:28 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 20:31:28 INFO: Processing Symobl ES
+2025-05-20 20:46:28 INFO: *************************************
+2025-05-20 20:46:28 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 20:46:28 INFO: Processing Symobl ES
+2025-05-20 21:01:29 INFO: *************************************
+2025-05-20 21:01:29 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 21:01:29 INFO: Processing Symobl ES
+2025-05-20 21:16:29 INFO: *************************************
+2025-05-20 21:16:29 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 21:16:29 INFO: Processing Symobl ES
+2025-05-20 21:31:29 INFO: *************************************
+2025-05-20 21:31:29 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 21:31:29 INFO: Processing Symobl ES
+2025-05-20 21:46:30 INFO: *************************************
+2025-05-20 21:46:30 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 21:46:30 INFO: Processing Symobl ES
+2025-05-20 22:01:30 INFO: *************************************
+2025-05-20 22:01:30 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 22:01:30 INFO: Processing Symobl ES
+2025-05-20 22:16:31 INFO: *************************************
+2025-05-20 22:16:31 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 22:16:31 INFO: Processing Symobl ES
+2025-05-20 22:31:31 INFO: *************************************
+2025-05-20 22:31:31 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 22:31:31 INFO: Processing Symobl ES
+2025-05-20 22:46:31 INFO: *************************************
+2025-05-20 22:46:31 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 22:46:31 INFO: Processing Symobl ES
+2025-05-20 23:01:32 INFO: *************************************
+2025-05-20 23:01:32 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 23:01:32 INFO: Processing Symobl ES
+2025-05-20 23:16:32 INFO: *************************************
+2025-05-20 23:16:32 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 23:16:32 INFO: Processing Symobl ES
+2025-05-20 23:31:32 INFO: *************************************
+2025-05-20 23:31:32 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 23:31:32 INFO: Processing Symobl ES
+2025-05-20 23:45:47 INFO: Reconnected to TWS
+2025-05-20 23:46:47 INFO: *************************************
+2025-05-20 23:46:47 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-20 23:46:47 INFO: Processing Symobl ES
+2025-05-21 00:10:50 INFO: *************************************
+2025-05-21 00:10:50 INFO: Restarting symbol after maintinance ES because of market data subscribtion
+2025-05-21 00:10:50 INFO: Processing Symobl ES
+2025-05-21 00:31:50 INFO: *************************************
+2025-05-21 00:31:50 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 00:31:50 INFO: Processing Symobl ES
+2025-05-21 00:46:51 INFO: *************************************
+2025-05-21 00:46:51 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 00:46:51 INFO: Processing Symobl ES
+2025-05-21 01:01:51 INFO: *************************************
+2025-05-21 01:01:51 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 01:01:51 INFO: Processing Symobl ES
+2025-05-21 01:16:52 INFO: *************************************
+2025-05-21 01:16:52 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 01:16:52 INFO: Processing Symobl ES
+2025-05-21 01:31:52 INFO: *************************************
+2025-05-21 01:31:52 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 01:31:52 INFO: Processing Symobl ES
+2025-05-21 01:46:53 INFO: *************************************
+2025-05-21 01:46:53 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 01:46:53 INFO: Processing Symobl ES
+2025-05-21 02:01:53 INFO: *************************************
+2025-05-21 02:01:53 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 02:01:53 INFO: Processing Symobl ES
+2025-05-21 02:16:54 INFO: *************************************
+2025-05-21 02:16:54 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 02:16:54 INFO: Processing Symobl ES
+2025-05-21 02:31:54 INFO: *************************************
+2025-05-21 02:31:54 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 02:31:54 INFO: Processing Symobl ES
+2025-05-21 02:46:54 INFO: *************************************
+2025-05-21 02:46:54 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 02:46:54 INFO: Processing Symobl ES
+2025-05-21 03:01:55 INFO: *************************************
+2025-05-21 03:01:55 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 03:01:55 INFO: Processing Symobl ES
+2025-05-21 03:16:55 INFO: *************************************
+2025-05-21 03:16:55 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 03:16:55 INFO: Processing Symobl ES
+2025-05-21 03:31:56 INFO: *************************************
+2025-05-21 03:31:56 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 03:31:56 INFO: Processing Symobl ES
+2025-05-21 03:46:56 INFO: *************************************
+2025-05-21 03:46:56 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 03:46:56 INFO: Processing Symobl ES
+2025-05-21 04:01:57 INFO: *************************************
+2025-05-21 04:01:57 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 04:01:57 INFO: Processing Symobl ES
+2025-05-21 04:16:57 INFO: *************************************
+2025-05-21 04:16:57 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 04:16:57 INFO: Processing Symobl ES
+2025-05-21 04:31:57 INFO: *************************************
+2025-05-21 04:31:57 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 04:31:57 INFO: Processing Symobl ES
+2025-05-21 04:46:58 INFO: *************************************
+2025-05-21 04:46:58 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 04:46:58 INFO: Processing Symobl ES
+2025-05-21 05:01:58 INFO: *************************************
+2025-05-21 05:01:58 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 05:01:58 INFO: Processing Symobl ES
+2025-05-21 05:16:58 INFO: *************************************
+2025-05-21 05:16:58 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 05:16:58 INFO: Processing Symobl ES
+2025-05-21 05:31:59 INFO: *************************************
+2025-05-21 05:31:59 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 05:31:59 INFO: Processing Symobl ES
+2025-05-21 05:46:59 INFO: *************************************
+2025-05-21 05:46:59 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 05:46:59 INFO: Processing Symobl ES
+2025-05-21 06:02:00 INFO: *************************************
+2025-05-21 06:02:00 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 06:02:00 INFO: Processing Symobl ES
+2025-05-21 06:17:00 INFO: *************************************
+2025-05-21 06:17:00 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 06:17:00 INFO: Processing Symobl ES
+2025-05-21 06:32:00 INFO: *************************************
+2025-05-21 06:32:00 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 06:32:00 INFO: Processing Symobl ES
+2025-05-21 06:46:01 INFO: *************************************
+2025-05-21 06:46:01 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 06:46:01 INFO: Processing Symobl ES
+2025-05-21 07:01:01 INFO: *************************************
+2025-05-21 07:01:01 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 07:01:01 INFO: Processing Symobl ES
+2025-05-21 07:16:02 INFO: *************************************
+2025-05-21 07:16:02 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 07:16:02 INFO: Processing Symobl ES
+2025-05-21 07:31:02 INFO: *************************************
+2025-05-21 07:31:02 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 07:31:02 INFO: Processing Symobl ES
+2025-05-21 07:46:02 INFO: *************************************
+2025-05-21 07:46:02 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 07:46:02 INFO: Processing Symobl ES
+2025-05-21 08:01:03 INFO: *************************************
+2025-05-21 08:01:03 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 08:01:03 INFO: Processing Symobl ES
+2025-05-21 08:16:03 INFO: *************************************
+2025-05-21 08:16:03 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 08:16:03 INFO: Processing Symobl ES
+2025-05-21 08:31:04 INFO: *************************************
+2025-05-21 08:31:04 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 08:31:04 INFO: Processing Symobl ES
+2025-05-21 08:46:04 INFO: *************************************
+2025-05-21 08:46:04 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 08:46:04 INFO: Processing Symobl ES
+2025-05-21 09:01:04 INFO: *************************************
+2025-05-21 09:01:04 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 09:01:04 INFO: Processing Symobl ES
+2025-05-21 09:16:05 INFO: *************************************
+2025-05-21 09:16:05 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 09:16:05 INFO: Processing Symobl ES
+2025-05-21 09:31:05 INFO: *************************************
+2025-05-21 09:31:05 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 09:31:05 INFO: Processing Symobl ES
+2025-05-21 09:46:05 INFO: *************************************
+2025-05-21 09:46:05 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 09:46:05 INFO: Processing Symobl ES
+2025-05-21 10:01:06 INFO: *************************************
+2025-05-21 10:01:06 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 10:01:06 INFO: Processing Symobl ES
+2025-05-21 10:16:06 INFO: *************************************
+2025-05-21 10:16:06 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 10:16:06 INFO: Processing Symobl ES
+2025-05-21 10:31:07 INFO: *************************************
+2025-05-21 10:31:07 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 10:31:07 INFO: Processing Symobl ES
+2025-05-21 10:46:07 INFO: *************************************
+2025-05-21 10:46:07 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 10:46:07 INFO: Processing Symobl ES
+2025-05-21 11:01:07 INFO: *************************************
+2025-05-21 11:01:07 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 11:01:07 INFO: Processing Symobl ES
+2025-05-21 11:16:08 INFO: *************************************
+2025-05-21 11:16:08 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 11:16:08 INFO: Processing Symobl ES
+2025-05-21 11:31:08 INFO: *************************************
+2025-05-21 11:31:08 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 11:31:08 INFO: Processing Symobl ES
+2025-05-21 11:46:09 INFO: *************************************
+2025-05-21 11:46:09 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 11:46:09 INFO: Processing Symobl ES
+2025-05-21 12:01:09 INFO: *************************************
+2025-05-21 12:01:09 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 12:01:09 INFO: Processing Symobl ES
+2025-05-21 12:16:09 INFO: *************************************
+2025-05-21 12:16:09 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 12:16:09 INFO: Processing Symobl ES
+2025-05-21 12:31:10 INFO: *************************************
+2025-05-21 12:31:10 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 12:31:10 INFO: Processing Symobl ES
+2025-05-21 12:46:10 INFO: *************************************
+2025-05-21 12:46:10 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-21 12:46:10 INFO: Processing Symobl ES
+2025-05-21 12:57:59 INFO: Application started
+2025-05-21 12:57:59 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-21 12:57:59 INFO: Processing Symobl ES
+2025-05-26 11:04:56 INFO: Application started
+2025-05-26 11:04:57 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-26 11:04:57 INFO: Processing Symobl ES
+2025-05-26 11:16:04 INFO: *************************************
+2025-05-26 11:16:04 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 11:16:04 INFO: Processing Symobl ES
+2025-05-26 11:17:31 INFO: Application started
+2025-05-26 11:17:44 INFO: Application started
+2025-05-26 11:18:04 INFO: Application started
+2025-05-26 11:18:05 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-26 11:18:05 INFO: Processing Symobl ES
+2025-05-26 11:31:06 INFO: *************************************
+2025-05-26 11:31:06 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 11:31:06 INFO: Processing Symobl ES
+2025-05-26 11:33:10 INFO: Application started
+2025-05-26 11:34:23 INFO: Application started
+2025-05-26 11:34:32 INFO: Application started
+2025-05-26 11:35:06 INFO: Application started
+2025-05-26 11:36:04 INFO: Application started
+2025-05-26 11:36:05 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-05-26 11:36:05 INFO: Processing Symobl ES
+2025-05-26 11:46:10 INFO: *************************************
+2025-05-26 11:46:10 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 11:46:10 INFO: Processing Symobl ES
+2025-05-26 12:01:10 INFO: *************************************
+2025-05-26 12:01:10 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 12:01:10 INFO: Processing Symobl ES
+2025-05-26 12:16:11 INFO: *************************************
+2025-05-26 12:16:11 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 12:16:11 INFO: Processing Symobl ES
+2025-05-26 12:31:12 INFO: *************************************
+2025-05-26 12:31:12 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 12:31:12 INFO: Processing Symobl ES
+2025-05-26 12:46:12 INFO: *************************************
+2025-05-26 12:46:12 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 12:46:12 INFO: Processing Symobl ES
+2025-05-26 18:00:13 INFO: *************************************
+2025-05-26 18:00:13 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 18:00:13 INFO: Processing Symobl ES
+2025-05-26 18:01:13 INFO: *************************************
+2025-05-26 18:01:13 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 18:01:13 INFO: Processing Symobl ES
+2025-05-26 18:02:14 INFO: *************************************
+2025-05-26 18:02:14 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 18:02:14 INFO: Processing Symobl ES
+2025-05-26 18:03:14 INFO: *************************************
+2025-05-26 18:03:14 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 18:03:14 INFO: Processing Symobl ES
+2025-05-26 18:04:15 INFO: *************************************
+2025-05-26 18:04:15 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 18:04:15 INFO: Processing Symobl ES
+2025-05-26 18:05:15 INFO: *************************************
+2025-05-26 18:05:15 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 18:05:15 INFO: Processing Symobl ES
+2025-05-26 18:06:15 INFO: *************************************
+2025-05-26 18:06:15 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 18:06:15 INFO: Processing Symobl ES
+2025-05-26 18:07:16 INFO: *************************************
+2025-05-26 18:07:16 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 18:07:16 INFO: Processing Symobl ES
+2025-05-26 18:08:16 INFO: *************************************
+2025-05-26 18:08:16 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 18:08:16 INFO: Processing Symobl ES
+2025-05-26 18:09:16 INFO: *************************************
+2025-05-26 18:09:16 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 18:09:16 INFO: Processing Symobl ES
+2025-05-26 18:10:17 INFO: *************************************
+2025-05-26 18:10:17 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 18:10:17 INFO: Processing Symobl ES
+2025-05-26 18:11:17 INFO: *************************************
+2025-05-26 18:11:17 INFO: Restarting symbol ES because of market data subscribtion
+2025-05-26 18:11:17 INFO: Processing Symobl ES
+2025-06-10 15:14:49 INFO: Application started
+2025-06-10 15:18:24 INFO: Application started
+2025-06-10 15:18:25 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-06-10 15:18:25 INFO: Processing Symobl ES
+2025-06-10 15:31:29 INFO: *************************************
+2025-06-10 15:31:29 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 15:31:29 INFO: Processing Symobl ES
+2025-06-10 15:46:30 INFO: *************************************
+2025-06-10 15:46:30 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 15:46:30 INFO: Processing Symobl ES
+2025-06-10 16:01:31 INFO: *************************************
+2025-06-10 16:01:31 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 16:01:31 INFO: Processing Symobl ES
+2025-06-10 16:16:31 INFO: *************************************
+2025-06-10 16:16:31 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 16:16:31 INFO: Processing Symobl ES
+2025-06-10 16:31:32 INFO: *************************************
+2025-06-10 16:31:32 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 16:31:32 INFO: Processing Symobl ES
+2025-06-10 16:46:32 INFO: *************************************
+2025-06-10 16:46:32 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 16:46:32 INFO: Processing Symobl ES
+2025-06-10 18:00:33 INFO: *************************************
+2025-06-10 18:00:33 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 18:00:33 INFO: Processing Symobl ES
+2025-06-10 18:01:33 INFO: *************************************
+2025-06-10 18:01:33 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 18:01:33 INFO: Processing Symobl ES
+2025-06-10 18:02:33 INFO: *************************************
+2025-06-10 18:02:33 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 18:02:33 INFO: Processing Symobl ES
+2025-06-10 18:03:34 INFO: *************************************
+2025-06-10 18:03:34 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 18:03:34 INFO: Processing Symobl ES
+2025-06-10 18:04:34 INFO: *************************************
+2025-06-10 18:04:34 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 18:04:34 INFO: Processing Symobl ES
+2025-06-10 18:05:35 INFO: *************************************
+2025-06-10 18:05:35 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 18:05:35 INFO: Processing Symobl ES
+2025-06-10 18:06:35 INFO: *************************************
+2025-06-10 18:06:35 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 18:06:35 INFO: Processing Symobl ES
+2025-06-10 18:07:35 INFO: *************************************
+2025-06-10 18:07:35 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 18:07:35 INFO: Processing Symobl ES
+2025-06-10 18:08:36 INFO: *************************************
+2025-06-10 18:08:36 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 18:08:36 INFO: Processing Symobl ES
+2025-06-10 18:09:36 INFO: *************************************
+2025-06-10 18:09:36 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 18:09:36 INFO: Processing Symobl ES
+2025-06-10 18:10:36 INFO: *************************************
+2025-06-10 18:10:36 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 18:10:36 INFO: Processing Symobl ES
+2025-06-10 20:31:37 INFO: *************************************
+2025-06-10 20:31:37 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 20:31:37 INFO: Processing Symobl ES
+2025-06-10 20:46:37 INFO: *************************************
+2025-06-10 20:46:37 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 20:46:37 INFO: Processing Symobl ES
+2025-06-10 21:01:38 INFO: *************************************
+2025-06-10 21:01:38 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 21:01:38 INFO: Processing Symobl ES
+2025-06-10 21:16:38 INFO: *************************************
+2025-06-10 21:16:38 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 21:16:38 INFO: Processing Symobl ES
+2025-06-10 21:31:38 INFO: *************************************
+2025-06-10 21:31:38 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 21:31:38 INFO: Processing Symobl ES
+2025-06-10 21:46:39 INFO: *************************************
+2025-06-10 21:46:39 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 21:46:39 INFO: Processing Symobl ES
+2025-06-10 22:01:39 INFO: *************************************
+2025-06-10 22:01:39 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 22:01:39 INFO: Processing Symobl ES
+2025-06-10 22:16:39 INFO: *************************************
+2025-06-10 22:16:39 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 22:16:39 INFO: Processing Symobl ES
+2025-06-10 22:31:40 INFO: *************************************
+2025-06-10 22:31:40 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 22:31:40 INFO: Processing Symobl ES
+2025-06-10 22:46:40 INFO: *************************************
+2025-06-10 22:46:40 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 22:46:40 INFO: Processing Symobl ES
+2025-06-10 23:01:40 INFO: *************************************
+2025-06-10 23:01:40 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 23:01:40 INFO: Processing Symobl ES
+2025-06-10 23:16:41 INFO: *************************************
+2025-06-10 23:16:41 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 23:16:41 INFO: Processing Symobl ES
+2025-06-10 23:31:41 INFO: *************************************
+2025-06-10 23:31:41 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 23:31:41 INFO: Processing Symobl ES
+2025-06-10 23:45:36 INFO: Reconnected to TWS
+2025-06-10 23:46:42 INFO: *************************************
+2025-06-10 23:46:42 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-10 23:46:42 INFO: Processing Symobl ES
+2025-06-11 00:10:45 INFO: *************************************
+2025-06-11 00:10:45 INFO: Restarting symbol after maintinance ES because of market data subscribtion
+2025-06-11 00:10:45 INFO: Processing Symobl ES
+2025-06-11 00:31:46 INFO: *************************************
+2025-06-11 00:31:46 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-11 00:31:46 INFO: Processing Symobl ES
+2025-06-11 23:45:38 INFO: Reconnected to TWS
+2025-06-11 23:46:38 INFO: *************************************
+2025-06-11 23:46:38 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-11 23:46:38 INFO: Processing Symobl ES
+2025-06-12 00:10:41 INFO: *************************************
+2025-06-12 00:10:41 INFO: Restarting symbol after maintinance ES because of market data subscribtion
+2025-06-12 00:10:41 INFO: Processing Symobl ES
+2025-06-12 00:31:42 INFO: *************************************
+2025-06-12 00:31:42 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 00:31:42 INFO: Processing Symobl ES
+2025-06-12 00:46:43 INFO: *************************************
+2025-06-12 00:46:43 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 00:46:43 INFO: Processing Symobl ES
+2025-06-12 01:01:43 INFO: *************************************
+2025-06-12 01:01:43 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 01:01:43 INFO: Processing Symobl ES
+2025-06-12 01:16:44 INFO: *************************************
+2025-06-12 01:16:44 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 01:16:44 INFO: Processing Symobl ES
+2025-06-12 01:31:44 INFO: *************************************
+2025-06-12 01:31:44 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 01:31:44 INFO: Processing Symobl ES
+2025-06-12 01:46:44 INFO: *************************************
+2025-06-12 01:46:44 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 01:46:44 INFO: Processing Symobl ES
+2025-06-12 02:01:45 INFO: *************************************
+2025-06-12 02:01:45 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 02:01:45 INFO: Processing Symobl ES
+2025-06-12 02:16:45 INFO: *************************************
+2025-06-12 02:16:45 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 02:16:45 INFO: Processing Symobl ES
+2025-06-12 02:31:46 INFO: *************************************
+2025-06-12 02:31:46 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 02:31:46 INFO: Processing Symobl ES
+2025-06-12 02:46:46 INFO: *************************************
+2025-06-12 02:46:46 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 02:46:46 INFO: Processing Symobl ES
+2025-06-12 03:01:46 INFO: *************************************
+2025-06-12 03:01:46 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 03:01:46 INFO: Processing Symobl ES
+2025-06-12 03:16:47 INFO: *************************************
+2025-06-12 03:16:47 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 03:16:47 INFO: Processing Symobl ES
+2025-06-12 03:31:47 INFO: *************************************
+2025-06-12 03:31:47 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 03:31:47 INFO: Processing Symobl ES
+2025-06-12 03:46:48 INFO: *************************************
+2025-06-12 03:46:48 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 03:46:48 INFO: Processing Symobl ES
+2025-06-12 04:01:48 INFO: *************************************
+2025-06-12 04:01:48 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 04:01:48 INFO: Processing Symobl ES
+2025-06-12 04:16:48 INFO: *************************************
+2025-06-12 04:16:48 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 04:16:48 INFO: Processing Symobl ES
+2025-06-12 04:31:49 INFO: *************************************
+2025-06-12 04:31:49 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 04:31:49 INFO: Processing Symobl ES
+2025-06-12 04:46:49 INFO: *************************************
+2025-06-12 04:46:49 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 04:46:49 INFO: Processing Symobl ES
+2025-06-12 05:01:50 INFO: *************************************
+2025-06-12 05:01:50 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 05:01:50 INFO: Processing Symobl ES
+2025-06-12 05:16:50 INFO: *************************************
+2025-06-12 05:16:50 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 05:16:50 INFO: Processing Symobl ES
+2025-06-12 05:31:50 INFO: *************************************
+2025-06-12 05:31:50 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 05:31:50 INFO: Processing Symobl ES
+2025-06-12 05:46:51 INFO: *************************************
+2025-06-12 05:46:51 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 05:46:51 INFO: Processing Symobl ES
+2025-06-12 06:01:51 INFO: *************************************
+2025-06-12 06:01:51 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 06:01:51 INFO: Processing Symobl ES
+2025-06-12 06:16:51 INFO: *************************************
+2025-06-12 06:16:51 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 06:16:51 INFO: Processing Symobl ES
+2025-06-12 06:31:52 INFO: *************************************
+2025-06-12 06:31:52 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 06:31:52 INFO: Processing Symobl ES
+2025-06-12 06:46:52 INFO: *************************************
+2025-06-12 06:46:52 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 06:46:52 INFO: Processing Symobl ES
+2025-06-12 07:01:52 INFO: *************************************
+2025-06-12 07:01:52 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 07:01:52 INFO: Processing Symobl ES
+2025-06-12 07:16:53 INFO: *************************************
+2025-06-12 07:16:53 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 07:16:53 INFO: Processing Symobl ES
+2025-06-12 07:31:53 INFO: *************************************
+2025-06-12 07:31:53 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 07:31:53 INFO: Processing Symobl ES
+2025-06-12 07:46:53 INFO: *************************************
+2025-06-12 07:46:53 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 07:46:53 INFO: Processing Symobl ES
+2025-06-12 08:01:54 INFO: *************************************
+2025-06-12 08:01:54 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 08:01:54 INFO: Processing Symobl ES
+2025-06-12 08:16:54 INFO: *************************************
+2025-06-12 08:16:54 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 08:16:54 INFO: Processing Symobl ES
+2025-06-12 08:31:54 INFO: *************************************
+2025-06-12 08:31:54 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 08:31:54 INFO: Processing Symobl ES
+2025-06-12 08:46:55 INFO: *************************************
+2025-06-12 08:46:55 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 08:46:55 INFO: Processing Symobl ES
+2025-06-12 09:01:55 INFO: *************************************
+2025-06-12 09:01:55 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 09:01:55 INFO: Processing Symobl ES
+2025-06-12 09:16:56 INFO: *************************************
+2025-06-12 09:16:56 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 09:16:56 INFO: Processing Symobl ES
+2025-06-12 09:31:56 INFO: *************************************
+2025-06-12 09:31:56 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 09:31:56 INFO: Processing Symobl ES
+2025-06-12 09:46:57 INFO: *************************************
+2025-06-12 09:46:57 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 09:46:57 INFO: Processing Symobl ES
+2025-06-12 10:01:57 INFO: *************************************
+2025-06-12 10:01:57 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 10:01:57 INFO: Processing Symobl ES
+2025-06-12 10:16:57 INFO: *************************************
+2025-06-12 10:16:57 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 10:16:57 INFO: Processing Symobl ES
+2025-06-12 10:31:58 INFO: *************************************
+2025-06-12 10:31:58 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 10:31:58 INFO: Processing Symobl ES
+2025-06-12 10:46:58 INFO: *************************************
+2025-06-12 10:46:58 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 10:46:58 INFO: Processing Symobl ES
+2025-06-12 11:01:58 INFO: *************************************
+2025-06-12 11:01:58 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 11:01:58 INFO: Processing Symobl ES
+2025-06-12 11:16:59 INFO: *************************************
+2025-06-12 11:16:59 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 11:16:59 INFO: Processing Symobl ES
+2025-06-12 11:31:59 INFO: *************************************
+2025-06-12 11:31:59 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 11:31:59 INFO: Processing Symobl ES
+2025-06-12 11:46:59 INFO: *************************************
+2025-06-12 11:46:59 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 11:46:59 INFO: Processing Symobl ES
+2025-06-12 12:02:00 INFO: *************************************
+2025-06-12 12:02:00 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 12:02:00 INFO: Processing Symobl ES
+2025-06-12 12:17:00 INFO: *************************************
+2025-06-12 12:17:00 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 12:17:00 INFO: Processing Symobl ES
+2025-06-12 12:31:01 INFO: *************************************
+2025-06-12 12:31:01 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 12:31:01 INFO: Processing Symobl ES
+2025-06-12 12:46:01 INFO: *************************************
+2025-06-12 12:46:01 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 12:46:01 INFO: Processing Symobl ES
+2025-06-12 13:01:01 INFO: *************************************
+2025-06-12 13:01:01 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 13:01:01 INFO: Processing Symobl ES
+2025-06-12 13:16:02 INFO: *************************************
+2025-06-12 13:16:02 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 13:16:02 INFO: Processing Symobl ES
+2025-06-12 13:31:03 INFO: *************************************
+2025-06-12 13:31:03 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 13:31:03 INFO: Processing Symobl ES
+2025-06-12 13:46:03 INFO: *************************************
+2025-06-12 13:46:03 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 13:46:03 INFO: Processing Symobl ES
+2025-06-12 14:01:03 INFO: *************************************
+2025-06-12 14:01:03 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 14:01:03 INFO: Processing Symobl ES
+2025-06-12 14:16:04 INFO: *************************************
+2025-06-12 14:16:04 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 14:16:04 INFO: Processing Symobl ES
+2025-06-12 14:31:04 INFO: *************************************
+2025-06-12 14:31:04 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 14:31:04 INFO: Processing Symobl ES
+2025-06-12 14:46:04 INFO: *************************************
+2025-06-12 14:46:04 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 14:46:04 INFO: Processing Symobl ES
+2025-06-12 15:01:05 INFO: *************************************
+2025-06-12 15:01:05 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 15:01:05 INFO: Processing Symobl ES
+2025-06-12 15:16:05 INFO: *************************************
+2025-06-12 15:16:05 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 15:16:05 INFO: Processing Symobl ES
+2025-06-12 15:31:05 INFO: *************************************
+2025-06-12 15:31:05 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 15:31:05 INFO: Processing Symobl ES
+2025-06-12 15:46:06 INFO: *************************************
+2025-06-12 15:46:06 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 15:46:06 INFO: Processing Symobl ES
+2025-06-12 16:01:06 INFO: *************************************
+2025-06-12 16:01:06 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 16:01:06 INFO: Processing Symobl ES
+2025-06-12 16:16:06 INFO: *************************************
+2025-06-12 16:16:06 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 16:16:06 INFO: Processing Symobl ES
+2025-06-12 16:31:07 INFO: *************************************
+2025-06-12 16:31:07 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 16:31:07 INFO: Processing Symobl ES
+2025-06-12 16:46:07 INFO: *************************************
+2025-06-12 16:46:07 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 16:46:07 INFO: Processing Symobl ES
+2025-06-12 18:00:08 INFO: *************************************
+2025-06-12 18:00:08 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 18:00:08 INFO: Processing Symobl ES
+2025-06-12 18:01:08 INFO: *************************************
+2025-06-12 18:01:08 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 18:01:08 INFO: Processing Symobl ES
+2025-06-12 18:02:08 INFO: *************************************
+2025-06-12 18:02:08 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 18:02:08 INFO: Processing Symobl ES
+2025-06-12 18:03:09 INFO: *************************************
+2025-06-12 18:03:09 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 18:03:09 INFO: Processing Symobl ES
+2025-06-12 18:04:09 INFO: *************************************
+2025-06-12 18:04:09 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 18:04:09 INFO: Processing Symobl ES
+2025-06-12 18:05:09 INFO: *************************************
+2025-06-12 18:05:09 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 18:05:09 INFO: Processing Symobl ES
+2025-06-12 18:06:10 INFO: *************************************
+2025-06-12 18:06:10 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 18:06:10 INFO: Processing Symobl ES
+2025-06-12 18:07:10 INFO: *************************************
+2025-06-12 18:07:10 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 18:07:10 INFO: Processing Symobl ES
+2025-06-12 18:08:10 INFO: *************************************
+2025-06-12 18:08:10 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 18:08:10 INFO: Processing Symobl ES
+2025-06-12 18:09:11 INFO: *************************************
+2025-06-12 18:09:11 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 18:09:11 INFO: Processing Symobl ES
+2025-06-12 18:10:11 INFO: *************************************
+2025-06-12 18:10:11 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 18:10:11 INFO: Processing Symobl ES
+2025-06-12 18:11:11 INFO: *************************************
+2025-06-12 18:11:11 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 18:11:11 INFO: Processing Symobl ES
+2025-06-12 20:31:12 INFO: *************************************
+2025-06-12 20:31:12 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 20:31:12 INFO: Processing Symobl ES
+2025-06-12 20:46:12 INFO: *************************************
+2025-06-12 20:46:12 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 20:46:12 INFO: Processing Symobl ES
+2025-06-12 21:01:12 INFO: *************************************
+2025-06-12 21:01:12 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 21:01:12 INFO: Processing Symobl ES
+2025-06-12 21:16:13 INFO: *************************************
+2025-06-12 21:16:13 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 21:16:13 INFO: Processing Symobl ES
+2025-06-12 21:31:13 INFO: *************************************
+2025-06-12 21:31:13 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 21:31:13 INFO: Processing Symobl ES
+2025-06-12 21:46:13 INFO: *************************************
+2025-06-12 21:46:13 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 21:46:13 INFO: Processing Symobl ES
+2025-06-12 22:01:14 INFO: *************************************
+2025-06-12 22:01:14 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 22:01:14 INFO: Processing Symobl ES
+2025-06-12 22:16:14 INFO: *************************************
+2025-06-12 22:16:14 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 22:16:14 INFO: Processing Symobl ES
+2025-06-12 22:31:15 INFO: *************************************
+2025-06-12 22:31:15 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 22:31:15 INFO: Processing Symobl ES
+2025-06-12 22:46:15 INFO: *************************************
+2025-06-12 22:46:15 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 22:46:15 INFO: Processing Symobl ES
+2025-06-12 23:01:15 INFO: *************************************
+2025-06-12 23:01:15 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 23:01:15 INFO: Processing Symobl ES
+2025-06-12 23:16:16 INFO: *************************************
+2025-06-12 23:16:16 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 23:16:16 INFO: Processing Symobl ES
+2025-06-12 23:31:16 INFO: *************************************
+2025-06-12 23:31:16 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 23:31:16 INFO: Processing Symobl ES
+2025-06-12 23:45:40 INFO: Reconnected to TWS
+2025-06-12 23:46:40 INFO: *************************************
+2025-06-12 23:46:40 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-12 23:46:40 INFO: Processing Symobl ES
+2025-06-13 00:10:43 INFO: *************************************
+2025-06-13 00:10:43 INFO: Restarting symbol after maintinance ES because of market data subscribtion
+2025-06-13 00:10:43 INFO: Processing Symobl ES
+2025-06-13 00:31:44 INFO: *************************************
+2025-06-13 00:31:44 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-13 00:31:44 INFO: Processing Symobl ES
+2025-06-14 00:45:34 INFO: Reconnected to TWS
+2025-06-29 23:52:29 INFO: Application started
+2025-06-29 23:52:30 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-06-29 23:52:30 INFO: Processing Symobl ES
+2025-06-29 23:58:49 INFO: Application started
+2025-06-29 23:58:49 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-06-29 23:58:49 INFO: Processing Symobl ES
+2025-06-30 00:01:26 INFO: Application started
+2025-06-30 00:01:27 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-06-30 00:01:27 INFO: Processing Symobl ES
+2025-06-30 00:10:28 INFO: *************************************
+2025-06-30 00:10:28 INFO: Restarting symbol after maintinance ES because of market data subscribtion
+2025-06-30 00:10:28 INFO: Processing Symobl ES
+2025-06-30 02:01:29 INFO: *************************************
+2025-06-30 02:01:29 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-30 02:01:29 INFO: Processing Symobl ES
+2025-06-30 16:01:52 INFO: Application started
+2025-06-30 16:02:45 INFO: Application started
+2025-06-30 16:02:46 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-06-30 16:02:46 INFO: Processing Symobl ES
+2025-06-30 16:15:55 INFO: Application started
+2025-06-30 16:15:56 INFO: Connected to IB at 127.0.0.1:7497 with clientId 0
+2025-06-30 16:15:56 INFO: Processing Symobl ES
+2025-06-30 18:00:57 INFO: *************************************
+2025-06-30 18:00:57 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-30 18:00:57 INFO: Processing Symobl ES
+2025-06-30 23:45:44 INFO: Reconnected to TWS
+2025-06-30 23:46:58 INFO: *************************************
+2025-06-30 23:46:58 INFO: Restarting symbol ES because of market data subscribtion
+2025-06-30 23:46:58 INFO: Processing Symobl ES
+2025-07-01 00:10:01 INFO: *************************************
+2025-07-01 00:10:01 INFO: Restarting symbol after maintinance ES because of market data subscribtion
+2025-07-01 00:10:01 INFO: Processing Symobl ES
+2025-07-01 18:00:04 INFO: *************************************
+2025-07-01 18:00:04 INFO: Restarting symbol ES because of market data subscribtion
+2025-07-01 18:00:04 INFO: Processing Symobl ES
+2025-07-01 18:01:04 INFO: *************************************
+2025-07-01 18:01:04 INFO: Restarting symbol ES because of market data subscribtion
+2025-07-01 18:01:04 INFO: Processing Symobl ES
+2025-07-01 23:45:37 INFO: Reconnected to TWS
+2025-07-01 23:46:37 INFO: *************************************
+2025-07-01 23:46:37 INFO: Restarting symbol ES because of market data subscribtion
+2025-07-01 23:46:37 INFO: Processing Symobl ES
+2025-07-02 00:10:40 INFO: *************************************
+2025-07-02 00:10:40 INFO: Restarting symbol after maintinance ES because of market data subscribtion
+2025-07-02 00:10:40 INFO: Processing Symobl ES
+2025-07-02 16:31:42 INFO: *************************************
+2025-07-02 16:31:42 INFO: Restarting symbol ES because of market data subscribtion
+2025-07-02 16:31:42 INFO: Processing Symobl ES
+2025-07-02 16:56:17 INFO: Reconnected to TWS
