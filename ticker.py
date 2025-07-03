@@ -18,6 +18,7 @@ class Ticker:
         DRAWDOWN,
         MAXVALUE,
         LIQ,
+        LONG_BIAS,
         ib,
         logging: Logger = None,
     ) -> None:
@@ -30,6 +31,7 @@ class Ticker:
         self.DRAWDOWN: float = float(DRAWDOWN)
         self.MAXVALUE: float = float(MAXVALUE)
         self.LIQ:int = int(LIQ)
+        self.LONG_BIAS: float = float(LONG_BIAS)
         self.ib: IB = ib
         self.details = None
         self.log = logging if logging is not None else Logger()
@@ -178,7 +180,7 @@ class Ticker:
         except Exception as e:
             self.log.log_error(f"Calculate technical data error occurred: {e}"); return
         avilable_funds = self.exec.get_available_funds()
-        pos_to_achieve=max(min(indicator + 3,self.LEVAMOUNT), -self.LEVAMOUNT)*avilable_funds
+        pos_to_achieve=max(min(indicator + self.LONG_BIAS,self.LEVAMOUNT), -self.LEVAMOUNT)*avilable_funds
         contract_price=self.full_historical_data.iloc[-1]["close"]
         multiplier=50
         contract_value=contract_price*multiplier
