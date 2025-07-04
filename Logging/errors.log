@@ -1938,3 +1938,10 @@
 2025-06-30 23:45:00 ERROR: TWS disconnected. Reconnecting...
 2025-07-01 23:45:00 ERROR: TWS disconnected. Reconnecting...
 2025-07-02 16:55:19 ERROR: TWS disconnected. Reconnecting...
+2025-07-03 17:37:43 ERROR: An unexpected error occurred: [WinError 1225] The remote computer refused the network connection
+2025-07-03 17:37:54 ERROR: An unexpected error occurred: [WinError 1225] The remote computer refused the network connection
+2025-07-03 17:45:42 ERROR: An unexpected error occurred: [WinError 1225] The remote computer refused the network connection
+2025-07-03 17:45:49 ERROR: An unexpected error occurred: [WinError 1225] The remote computer refused the network connection
+2025-07-03 17:45:56 ERROR: An unexpected error occurred: [WinError 1225] The remote computer refused the network connection
+2025-07-03 17:46:02 ERROR: An unexpected error occurred: [WinError 1225] The remote computer refused the network connection
+2025-07-03 17:49:43 ERROR: An unexpected error occurred: [WinError 1225] The remote computer refused the network connection

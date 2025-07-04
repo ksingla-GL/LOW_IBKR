@@ -175,20 +175,54 @@ class Ticker:
         return indicator
 
     def execute_orders(self):
+        """Execute orders based on leverage calculation using Net Liquidation"""
         if self.LIQ==1:return
-        try:indicator = self.calculate_technical_indicators()
+        
+        # Calculate the base indicator from historical data
+        try:
+            indicator = self.calculate_technical_indicators()
         except Exception as e:
             self.log.log_error(f"Calculate technical data error occurred: {e}"); return
-        avilable_funds = self.exec.get_available_funds()
-        pos_to_achieve=max(min(indicator + self.LONG_BIAS,self.LEVAMOUNT), -self.LEVAMOUNT)*avilable_funds
-        contract_price=self.full_historical_data.iloc[-1]["close"]
-        multiplier=50
-        contract_value=contract_price*multiplier
+        
+        # CRITICAL FIX: Use Net Liquidation instead of Available Funds for leverage calculation
+        net_liquidation = self.exec.get_net_liquidation()
+        
+        # Log the calculation for debugging
+        self.log.log_execution(f"Leverage Calculation Debug:")
+        self.log.log_execution(f"  Base Indicator: {indicator:.2f}")
+        self.log.log_execution(f"  Long Bias: {self.LONG_BIAS}")
+        self.log.log_execution(f"  Final Leverage: {indicator + self.LONG_BIAS:.2f}")
+        self.log.log_execution(f"  Net Liquidation: ${net_liquidation:,.2f}")
+        
+        # Calculate target position value using NET LIQUIDATION (not available funds)
+        # This ensures leverage is calculated against total account value
+        leverage_with_bias = indicator + self.LONG_BIAS
+        leverage_clamped = max(min(leverage_with_bias, self.LEVAMOUNT), -self.LEVAMOUNT)
+        pos_to_achieve = leverage_clamped * net_liquidation
+        
+        self.log.log_execution(f"  Target Position Value: ${pos_to_achieve:,.2f}")
+        
+        # Calculate contract details
+        contract_price = self.full_historical_data.iloc[-1]["close"]
+        multiplier = 50  # ES multiplier
+        contract_value = contract_price * multiplier
+        
+        # Get current position
         position = self.exec.get_position(self.Symbol)
-        if position:current_position=position.position
-        else:current_position=0
-        quantity=round(pos_to_achieve // contract_value)
-
+        if position:
+            current_position = position.position
+        else:
+            current_position = 0
+            
+        # Calculate target quantity
+        quantity = round(pos_to_achieve / contract_value)
+        
+        self.log.log_execution(f"  Contract Price: ${contract_price:.2f}")
+        self.log.log_execution(f"  Contract Value: ${contract_value:,.2f}")
+        self.log.log_execution(f"  Current Position: {current_position} contracts")
+        self.log.log_execution(f"  Target Position: {quantity} contracts")
+        
+        # Determine action and trade quantity
         if quantity > current_position:
             action = "BUY"
             trade_quantity = quantity - current_position
@@ -196,7 +230,16 @@ class Ticker:
             action = "SELL"
             trade_quantity = current_position - quantity
 
+        # Execute the trade if we're at the right time and have quantity to trade
         if self.is_in_exec_time(self.historical_data.index[-1].time()) and trade_quantity > 0:
+            # Double-check we have sufficient buying power for the trade
+            available_funds = self.exec.get_available_funds()
+            estimated_cost = trade_quantity * contract_value * 0.1  # Rough margin estimate
+            
+            if action == "BUY" and available_funds < estimated_cost:
+                self.log.log_error(f"Insufficient buying power. Need ~${estimated_cost:,.2f}, have ${available_funds:,.2f}")
+                return
+            
             try:
                 self.exec.place_market_order(self.contract, action, trade_quantity)
                 self.log.log_execution(f"Order placed successfully: Action={action}, Quantity={trade_quantity}")
