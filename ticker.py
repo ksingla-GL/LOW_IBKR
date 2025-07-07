@@ -5,6 +5,7 @@ from execution import *
 from datetime import datetime, time, timedelta
 from zoneinfo import ZoneInfo
 import datetime as dt
+import os
 
 class Ticker:
     def __init__(
@@ -46,8 +47,9 @@ class Ticker:
         self.get_historical_data()
         
         # Initialize leverage ratio log file
-        self.leverage_log_file = f"leverage_ratio_log_{self.Symbol}.txt"
+        self.leverage_log_file = os.path.join("Logging", f"leverage_ratio_log_{self.Symbol}.txt")
         self.init_leverage_log()
+        #print(f"Leverage log will be saved to: {os.path.abspath(self.leverage_log_file)}")
         
 
 
