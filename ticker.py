@@ -45,8 +45,47 @@ class Ticker:
         self.data_maintinance=False
         self.get_historical_data()
         
+        # Initialize leverage ratio log file
+        self.leverage_log_file = f"leverage_ratio_log_{self.Symbol}.txt"
+        self.init_leverage_log()
+        
 
 
+    def init_leverage_log(self):
+        """Initialize the leverage ratio log file with headers"""
+        with open(self.leverage_log_file, 'a') as f:
+            f.write("\n" + "="*80 + "\n")
+            f.write(f"Leverage Ratio Log for {self.Symbol} - Started at {datetime.now()}\n")
+            f.write("="*80 + "\n")
+            f.write("Timestamp | Base Indicator | Long Bias | Raw Leverage | Clamped Leverage | Net Liquidation | Position to Achieve | Action | Quantity\n")
+            f.write("-"*80 + "\n")
+    
+    
+    def log_leverage_ratio(self, indicator, raw_leverage, clamped_leverage, net_liquidation, pos_to_achieve, action, quantity):
+        """Log the leverage ratio calculation to a notepad file"""
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        log_entry = (
+            f"{timestamp} | "
+            f"{indicator:>14.4f} | "
+            f"{self.LONG_BIAS:>9.2f} | "
+            f"{raw_leverage:>12.4f} | "
+            f"{clamped_leverage:>16.4f} | "
+            f"{net_liquidation:>15.2f} | "
+            f"{pos_to_achieve:>19.2f} | "
+            f"{action:>6} | "
+            f"{quantity:>8}\n"
+        )
+        
+        # Write to file
+        with open(self.leverage_log_file, 'a') as f:
+            f.write(log_entry)
+        
+        # Also log to console for immediate visibility
+        self.log.log_info(f"LEVERAGE RATIO: Base={indicator:.4f}, Bias={self.LONG_BIAS}, "
+                         f"Raw={raw_leverage:.4f}, Clamped={clamped_leverage:.4f}, "
+                         f"NetLiq=${net_liquidation:,.2f}, PosToAchieve=${pos_to_achieve:,.2f}")
+    
     
     def get_historical_data(self):
         self.log.log_info(f"Processing Symobl {self.Symbol}")
@@ -179,8 +218,17 @@ class Ticker:
         try:indicator = self.calculate_technical_indicators()
         except Exception as e:
             self.log.log_error(f"Calculate technical data error occurred: {e}"); return
-        avilable_funds = self.exec.get_available_funds()
-        pos_to_achieve=max(min(indicator + self.LONG_BIAS,self.LEVAMOUNT), -self.LEVAMOUNT)*avilable_funds
+        
+        # Get net liquidation value
+        net_liquidation = self.exec.get_net_liquidation()
+        
+        # Calculate leverage ratios
+        raw_leverage = indicator + self.LONG_BIAS
+        clamped_leverage = max(min(raw_leverage, self.LEVAMOUNT), -self.LEVAMOUNT)
+        
+        # Calculate position to achieve
+        pos_to_achieve = clamped_leverage * net_liquidation
+        
         contract_price=self.full_historical_data.iloc[-1]["close"]
         multiplier=50
         contract_value=contract_price*multiplier
@@ -195,6 +243,17 @@ class Ticker:
         else:
             action = "SELL"
             trade_quantity = current_position - quantity
+
+        # Log leverage ratio information
+        self.log_leverage_ratio(
+            indicator=indicator,
+            raw_leverage=raw_leverage,
+            clamped_leverage=clamped_leverage,
+            net_liquidation=net_liquidation,
+            pos_to_achieve=pos_to_achieve,
+            action=action,
+            quantity=trade_quantity
+        )
 
         if self.is_in_exec_time(self.historical_data.index[-1].time()) and trade_quantity > 0:
             try:
