@@ -203,16 +203,16 @@ class Ticker:
             file.writelines(lines)
 
     def calculate_technical_indicators(self):
-        diff_sum=0
         self.historical_data["Change"] = (
             self.historical_data["close"] - self.historical_data["open"]
         )
-        strt=int(self.DAYS*-1)
-        end=int((self.DAYS-self.OFFSET)*-1)
-        for i in range(strt,end,1):
-            diff_sum+=float(self.historical_data.iloc[i]["Change"])
-
-        indicator=diff_sum/self.OFFSET
+        
+        # Get exactly 5 days: from 7 days ago to 3 days ago
+        selected_days = self.historical_data.iloc[-self.DAYS:-self.OFFSET+1]
+        
+        # Calculate average change
+        indicator = selected_days["Change"].mean()
+        
         return indicator
 
     def execute_orders(self):
