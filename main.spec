@@ -6,11 +6,11 @@ a = Analysis(
     pathex=[],
     binaries=[],
     datas=[],
-    hiddenimports=['ib_async', 'pydantic', 'pandas'],
+    hiddenimports=[],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=[],
+    excludes=['IPython', 'sphinx', 'babel', 'jinja2', 'jedi', 'astroid'],
     noarchive=False,
     optimize=0,
 )
