@@ -63,7 +63,7 @@ class Ticker:
             f.write("-"*80 + "\n")
     
     
-    def log_leverage_ratio(self, indicator, raw_leverage, clamped_leverage, net_liquidation, pos_to_achieve, action, quantity):
+    def log_leverage_ratio(self, indicator, raw_leverage, Net_leverage, net_liquidation, pos_to_achieve, action, quantity):
         """Log the leverage ratio calculation to a notepad file"""
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
@@ -72,7 +72,7 @@ class Ticker:
             f"{indicator:>14.4f} | "
             f"{self.LONG_BIAS:>9.2f} | "
             f"{raw_leverage:>12.4f} | "
-            f"{clamped_leverage:>16.4f} | "
+            f"{Net_leverage:>16.4f} | "
             f"{net_liquidation:>15.2f} | "
             f"{pos_to_achieve:>19.2f} | "
             f"{action:>6} | "
@@ -85,7 +85,7 @@ class Ticker:
         
         # Also log to console for immediate visibility
         self.log.log_info(f"LEVERAGE RATIO: Base={indicator:.4f}, Bias={self.LONG_BIAS}, "
-                         f"Raw={raw_leverage:.4f}, Clamped={clamped_leverage:.4f}, "
+                         f"Raw={raw_leverage:.4f}, Net={Net_leverage:.4f}, "
                          f"NetLiq=${net_liquidation:,.2f}, PosToAchieve=${pos_to_achieve:,.2f}")
     
     
@@ -226,10 +226,10 @@ class Ticker:
         
         # Calculate leverage ratios
         raw_leverage = indicator + self.LONG_BIAS
-        clamped_leverage = max(min(raw_leverage, self.LEVAMOUNT), -self.LEVAMOUNT)
+        Net_leverage = max(min(raw_leverage, self.LEVAMOUNT), -self.LEVAMOUNT)
         
         # Calculate position to achieve
-        pos_to_achieve = clamped_leverage * net_liquidation
+        pos_to_achieve = Net_leverage * self.exec.get_available_funds()
         
         contract_price=self.full_historical_data.iloc[-1]["close"]
         multiplier=50
@@ -250,7 +250,7 @@ class Ticker:
         self.log_leverage_ratio(
             indicator=indicator,
             raw_leverage=raw_leverage,
-            clamped_leverage=clamped_leverage,
+            Net_leverage=Net_leverage,
             net_liquidation=net_liquidation,
             pos_to_achieve=pos_to_achieve,
             action=action,
