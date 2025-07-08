@@ -59,7 +59,7 @@ class Ticker:
             f.write("\n" + "="*80 + "\n")
             f.write(f"Leverage Ratio Log for {self.Symbol} - Started at {datetime.now()}\n")
             f.write("="*80 + "\n")
-            f.write("Timestamp | Base Indicator | Long Bias | Raw Leverage | Clamped Leverage | Net Liquidation | Position to Achieve | Action | Quantity\n")
+            f.write("Timestamp | Base Indicator | Long Bias | Raw Leverage | Net Leverage | Net Liquidation | Position to Achieve | Action | Quantity\n")
             f.write("-"*80 + "\n")
     
     
