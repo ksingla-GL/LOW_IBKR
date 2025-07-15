@@ -229,7 +229,7 @@ class Ticker:
         Net_leverage = max(min(raw_leverage, self.LEVAMOUNT), -self.LEVAMOUNT)
         
         # Calculate position to achieve
-        pos_to_achieve = Net_leverage * self.exec.get_available_funds()* (self.TOTMOUNT / 100)
+        pos_to_achieve = Net_leverage * self.exec.get_net_liquidation()* (self.TOTMOUNT / 100)
         
         contract_price=self.full_historical_data.iloc[-1]["close"]
         multiplier=50
