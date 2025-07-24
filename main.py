@@ -56,7 +56,7 @@ def main():
     config = load_config(CONFIG_FILE)
     logger=Logger()
     logger.log_info("Application started")
-    ib=IBConfig(logging=logger)
+    ib=IBConfig(port=7496, logging=logger)
     ib.open_connection()
     # ib.ib.execDetailsEvent += _exec_details
     read_trading_parameters(config,ib.ib,logger)
