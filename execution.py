@@ -19,6 +19,9 @@ class ExecuteSignals():
     def place_market_order(self, contract, action, quantity):
         order = MarketOrder(action, quantity)
         trade = self.ib.placeOrder(contract, order)
+        self.ib.sleep(1)
+        while trade.orderStatus.status in ['PendingSubmit', 'PreSubmitted']:
+            self.ib.sleep(0.5)
         return trade
     
     def place_stop_order(self, contract, action, stop_price, quantity):
