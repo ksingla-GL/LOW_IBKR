@@ -1,5 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+import sys
+sys.setrecursionlimit(5000)  # This fixes the recursion
 
 a = Analysis(
     ['main.py'],
@@ -10,7 +12,7 @@ a = Analysis(
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=['IPython', 'sphinx', 'babel', 'jinja2', 'jedi', 'astroid'],
+    excludes=[],
     noarchive=False,
     optimize=0,
 )

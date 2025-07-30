@@ -114,8 +114,9 @@ class Ticker:
             self.historical_data["date"] = pd.to_datetime(self.historical_data["date"])
             self.historical_data.set_index("date", inplace=True)
             self.full_historical_data=self.historical_data
-            target_time = self.get_target_execution_time(self.TIME)
-            self.historical_data = self.historical_data[self.historical_data.index.time == target_time]
+            #target_time = self.get_target_execution_time(self.TIME)
+            #self.historical_data = self.historical_data[self.historical_data.index.time == target_time]
+            self.historical_data = self.full_historical_data.copy() 
             self.log.log_symbol(symbol=self.Symbol,message=self.historical_data)
             self.log.log_indicators(self.full_historical_data.tail(5))
             self.bars.updateEvent += self.bar_handler
@@ -208,8 +209,8 @@ class Ticker:
         )
         
         # Get exactly 5 days: from 7 days ago to 3 days ago
-        selected_days = self.historical_data.iloc[-self.DAYS:-self.OFFSET+1]
-        
+        #selected_days = self.historical_data.iloc[-self.DAYS:-self.OFFSET+1]
+        selected_days = self.historical_data.tail(480) 
         # Calculate average change
         indicator = selected_days["Change"].mean()
         
@@ -257,7 +258,7 @@ class Ticker:
             quantity=trade_quantity
         )
 
-        if self.is_in_exec_time(self.historical_data.index[-1].time()) and trade_quantity > 0:
+        if trade_quantity > 0: #self.is_in_exec_time(self.historical_data.index[-1].time()) and 
             try:
                 self.exec.place_market_order(self.contract, action, trade_quantity)
                 self.log.log_execution(f"Order placed successfully: Action={action}, Quantity={trade_quantity}")
