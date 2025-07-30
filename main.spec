@@ -1,5 +1,4 @@
 # -*- mode: python ; coding: utf-8 -*-
-
 import sys
 sys.setrecursionlimit(5000)  # This fixes the recursion
 
@@ -27,7 +26,7 @@ exe = EXE(
     name='main',
     debug=False,
     bootloader_ignore_signals=False,
-    strip=False,
+    strip=True,
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,

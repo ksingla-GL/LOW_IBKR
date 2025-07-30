@@ -114,15 +114,23 @@ class Ticker:
             self.historical_data["date"] = pd.to_datetime(self.historical_data["date"])
             self.historical_data.set_index("date", inplace=True)
             self.full_historical_data=self.historical_data
-            #target_time = self.get_target_execution_time(self.TIME)
-            #self.historical_data = self.historical_data[self.historical_data.index.time == target_time]
-            self.historical_data = self.full_historical_data.copy() 
+            target_time = self.get_target_execution_time(self.TIME)
+            self.historical_data = self.historical_data[self.historical_data.index.time == target_time]
+            #self.historical_data = self.full_historical_data.copy() 
             self.log.log_symbol(symbol=self.Symbol,message=self.historical_data)
             self.log.log_indicators(self.full_historical_data.tail(5))
             self.bars.updateEvent += self.bar_handler
         except Exception as e:
             self.log.log_error(f"An unexpected error occurred: {e}")
+        if len(self.historical_data) > 0:
+            current_time = datetime.now().time()
+            target_exec_time = datetime.strptime(self.TIME, "%H:%M").time()
             
+            # If we're past execution time but haven't traded today
+            if current_time >= target_exec_time and current_time < time(16, 0):
+                self.log.log_info("Past execution time - executing based on latest bar")
+                self.ib.sleep(2)  # Let data settle
+                self.execute_orders()    
     
 
     def bar_handler(self, bars, has_new_bar=False):
@@ -258,7 +266,7 @@ class Ticker:
             quantity=trade_quantity
         )
 
-        if trade_quantity > 0: #self.is_in_exec_time(self.historical_data.index[-1].time()) and 
+        if self.is_in_exec_time(self.historical_data.index[-1].time()) and trade_quantity > 0: #
             try:
                 self.exec.place_market_order(self.contract, action, trade_quantity)
                 self.log.log_execution(f"Order placed successfully: Action={action}, Quantity={trade_quantity}")
