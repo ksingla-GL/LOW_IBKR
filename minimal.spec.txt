@@ -1,0 +1,27 @@
+# -*- mode: python ; coding: utf-8 -*-
+import sys
+sys.setrecursionlimit(5000)  # THIS FIXES RECURSION
+
+a = Analysis(['main.py'],
+             pathex=[],
+             binaries=[],
+             datas=[('config.txt', '.')],
+             hiddenimports=['ib_async', 'nest_asyncio', 'pandas', 'numpy'],
+             hookspath=[],
+             runtime_hooks=['runtime_hook.py'],  # Add your runtime hook here
+             excludes=['IPython', 'sphinx', 'babel', 'jinja2', 'jedi', 'astroid'],
+             noarchive=False)
+
+pyz = PYZ(a.pure, a.zipped_data)
+
+exe = EXE(pyz,
+          a.scripts,
+          a.binaries,
+          a.zipfiles,
+          a.datas,
+          [],
+          name='low_ibkr',
+          debug=False,
+          strip=True,
+          upx=True,
+          console=True)

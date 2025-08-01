@@ -1,0 +1,29 @@
+574 INFO: PyInstaller: 6.14.1, contrib hooks: 2025.5
+574 INFO: Python: 3.10.18 (conda)
+583 INFO: Platform: Windows-10-10.0.26100-SP0
+583 INFO: Python environment: C:\Users\kshit\anaconda3\envs\low_ibkr
+584 INFO: wrote C:\Users\kshit\Desktop\Upwork\LOW_IBKR\main.spec
+587 INFO: Removing temporary files and cleaning cache in C:\Users\kshit\AppData\Local\pyinstaller
+Traceback (most recent call last):
+  File "C:\Users\kshit\anaconda3\envs\low_ibkr\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\kshit\anaconda3\envs\low_ibkr\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\kshit\anaconda3\envs\low_ibkr\Scripts\pyinstaller.exe\__main__.py", line 7, in <module>
+  File "C:\Users\kshit\anaconda3\envs\low_ibkr\lib\site-packages\PyInstaller\__main__.py", line 231, in _console_script_run
+    run()
+  File "C:\Users\kshit\anaconda3\envs\low_ibkr\lib\site-packages\PyInstaller\__main__.py", line 215, in run
+    run_build(pyi_config, spec_file, **vars(args))
+  File "C:\Users\kshit\anaconda3\envs\low_ibkr\lib\site-packages\PyInstaller\__main__.py", line 70, in run_build
+    PyInstaller.building.build_main.main(pyi_config, spec_file, **kwargs)
+  File "C:\Users\kshit\anaconda3\envs\low_ibkr\lib\site-packages\PyInstaller\building\build_main.py", line 1282, in main
+    build(specfile, distpath, workpath, clean_build)
+  File "C:\Users\kshit\anaconda3\envs\low_ibkr\lib\site-packages\PyInstaller\building\build_main.py", line 1175, in build
+    shutil.rmtree(f)
+  File "C:\Users\kshit\anaconda3\envs\low_ibkr\lib\shutil.py", line 750, in rmtree
+    return _rmtree_unsafe(path, onerror)
+  File "C:\Users\kshit\anaconda3\envs\low_ibkr\lib\shutil.py", line 624, in _rmtree_unsafe
+    onerror(os.rmdir, path, sys.exc_info())
+  File "C:\Users\kshit\anaconda3\envs\low_ibkr\lib\shutil.py", line 622, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\kshit\\Desktop\\Upwork\\LOW_IBKR\\build\\main\\localpycs'
