@@ -122,7 +122,7 @@ class Ticker:
             self.bars.updateEvent += self.bar_handler
         except Exception as e:
             self.log.log_error(f"An unexpected error occurred: {e}")
-           
+        """   
         if len(self.historical_data) > 0:
             current_time = datetime.now().time()
             target_exec_time = datetime.strptime(self.TIME, "%H:%M").time()
@@ -132,15 +132,26 @@ class Ticker:
             self.log.log_info("Past execution time - executing based on latest bar")
             self.ib.sleep(2)  # Let data settle
             self.execute_orders()
-    
+        """
 
     def bar_handler(self, bars, has_new_bar=False):
         target_time = self.get_target_execution_time(self.TIME)
         current_value=self.exec.get_net_liquidation()
         self.MAXVALUE=max(self.MAXVALUE,current_value)
         self.monitor_drawdown(self.MAXVALUE,current_value)
+        if not hasattr(self, 'startup_checked'):
+            self.startup_checked = True
+            current_time = datetime.now().time()
+            exec_time = datetime.strptime(self.TIME, "%H:%M").time()
+            
+            if current_time >= exec_time and current_time < time(16, 0):
+                if len(self.historical_data) > 0:
+                    self.log.log_info("Startup check - executing missed trade")
+                    self.execute_orders()
+                    return
         if not has_new_bar or len(bars) < 2:
             return
+        
         bar = bars[-2]
         self.last_active_bar=pd.DataFrame([bars[-1].dict()])
         self.last_active_bar["date"] = pd.to_datetime(self.last_active_bar["date"])
