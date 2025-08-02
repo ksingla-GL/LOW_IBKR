@@ -116,21 +116,22 @@ class Ticker:
             self.full_historical_data=self.historical_data
             target_time = self.get_target_execution_time(self.TIME)
             self.historical_data = self.historical_data[self.historical_data.index.time == target_time]
-            #self.historical_data = self.full_historical_data.copy() 
+            self.historical_data = self.full_historical_data.copy() 
             self.log.log_symbol(symbol=self.Symbol,message=self.historical_data)
             self.log.log_indicators(self.full_historical_data.tail(5))
             self.bars.updateEvent += self.bar_handler
         except Exception as e:
             self.log.log_error(f"An unexpected error occurred: {e}")
+           
         if len(self.historical_data) > 0:
             current_time = datetime.now().time()
             target_exec_time = datetime.strptime(self.TIME, "%H:%M").time()
-            
-            # If we're past execution time but haven't traded today
-            if current_time >= target_exec_time and current_time < time(16, 0):
-                self.log.log_info("Past execution time - executing based on latest bar")
-                self.ib.sleep(2)  # Let data settle
-                self.execute_orders()    
+        
+        # If we're past execution time but haven't traded today
+        if current_time >= target_exec_time and current_time < time(16, 0):
+            self.log.log_info("Past execution time - executing based on latest bar")
+            self.ib.sleep(2)  # Let data settle
+            self.execute_orders()
     
 
     def bar_handler(self, bars, has_new_bar=False):
