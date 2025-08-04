@@ -146,16 +146,13 @@ class Ticker:
             
             if current_time >= exec_time and current_time < time(16, 0):
                 if len(self.historical_data) > 0:
-                    # CHECK IF WE HAVE TODAY'S BAR AT THE CORRECT TIME
-                    last_bar_date = self.historical_data.index[-1].date()
-                    today = datetime.now().date()
+                    # Check if bar is from last 24 hours
+                    last_bar = self.historical_data.index[-1]
+                    hours_old = (datetime.now() - last_bar.replace(tzinfo=None)).total_seconds() / 3600
                     
-                    # Only execute if the last bar is from TODAY at the correct time
-                    if last_bar_date == today:
+                    if hours_old < 24:
                         self.log.log_info("Startup check - executing missed trade")
                         self.execute_orders()
-                    else:
-                        self.log.log_info("No bar from today at configured time - skipping")
                 return
         if not has_new_bar or len(bars) < 2:
             return
