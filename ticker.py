@@ -141,18 +141,19 @@ class Ticker:
         self.monitor_drawdown(self.MAXVALUE,current_value)
         if not hasattr(self, 'startup_checked'):
             self.startup_checked = True
+            self.executed_today = False  # ADD THIS
             current_time = datetime.now().time()
             exec_time = datetime.strptime(self.TIME, "%H:%M").time()
             
             if current_time >= exec_time and current_time < time(16, 0):
                 if len(self.historical_data) > 0:
-                    # Check if bar is from last 24 hours
                     last_bar = self.historical_data.index[-1]
                     hours_old = (datetime.now() - last_bar.replace(tzinfo=None)).total_seconds() / 3600
                     
                     if hours_old < 24:
                         self.log.log_info("Startup check - executing missed trade")
                         self.execute_orders()
+                        self.executed_today = True  # SET FLAG
                 return
         if not has_new_bar or len(bars) < 2:
             return
@@ -243,6 +244,9 @@ class Ticker:
 
     def execute_orders(self):
         if self.LIQ==1:return
+        if hasattr(self, 'executed_today') and self.executed_today:
+            self.log.log_info("Already executed today - skipping")
+            return
         try:indicator = self.calculate_technical_indicators()
         except Exception as e:
             self.log.log_error(f"Calculate technical data error occurred: {e}"); return
