@@ -103,7 +103,7 @@ class Ticker:
             self.bars = self.ib.reqHistoricalData(
                 self.contract,
                 endDateTime='',
-                durationStr=f'{self.DAYS+self.DAYS} D',
+                durationStr='30 D', #f'{self.DAYS+self.DAYS} D'
                 barSizeSetting='15 mins',
                 whatToShow='TRADES',
                 useRTH=False,
