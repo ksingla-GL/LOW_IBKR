@@ -136,57 +136,32 @@ class Ticker:
         """
 
     def bar_handler(self, bars, has_new_bar=False):
-        target_time = self.get_target_execution_time(self.TIME)
-        current_value=self.exec.get_net_liquidation()
-        self.MAXVALUE=max(self.MAXVALUE,current_value)
-        self.monitor_drawdown(self.MAXVALUE,current_value)
-        if not hasattr(self, 'startup_checked'):
-            self.startup_checked = True
-            self.executed_today = False  # ADD THIS
-            current_time = datetime.now().time()
-            exec_time = datetime.strptime(self.TIME, "%H:%M").time()
-            
-            if current_time >= exec_time and current_time < time(16, 0):
-                if len(self.historical_data) > 0:
-                    last_bar = self.historical_data.index[-1]
-                    hours_old = (datetime.now() - last_bar.replace(tzinfo=None)).total_seconds() / 3600
-                    
-                    if hours_old < 24:
-                        self.log.log_info("Startup check - executing missed trade")
-                        self.execute_orders()
-                        self.executed_today = True  # SET FLAG
-                return
         if not has_new_bar or len(bars) < 2:
             return
         
-        bar = bars[-2]
-        self.last_active_bar=pd.DataFrame([bars[-1].dict()])
-        self.last_active_bar["date"] = pd.to_datetime(self.last_active_bar["date"])
-        self.last_active_bar = self.last_active_bar.set_index("date")
-        bar = pd.DataFrame([bar.dict()])
-        bar["date"] = pd.to_datetime(bar["date"])
-        bar = bar.set_index("date")
-        print(f"bar closed {bar.index.time}")
-        if self.historical_data.tail(1).index[0] == bar.index[0]:
-            self.historical_data.iloc[-1] = bar
-            self.full_historical_data.iloc[-1] = bar
-            self.log.log_indicators(self.full_historical_data.tail(2))
-            self.log.log_symbol(symbol=self.Symbol,message=self.historical_data.tail(-1))
-            try:self.execute_orders()
+        bar = bars[-2]  # Last completed bar
+        bar_time = pd.to_datetime(bar.date).time()
+        target_time = self.get_target_execution_time(self.TIME)
+        
+        # Always update full historical data
+        bar_df = pd.DataFrame([bar.dict()])
+        bar_df["date"] = pd.to_datetime(bar_df["date"])
+        bar_df = bar_df.set_index("date")
+        
+        # Update or append to full data
+        if self.full_historical_data.index[-1] == bar_df.index[0]:
+            self.full_historical_data.iloc[-1] = bar_df.iloc[0]
+        else:
+            self.full_historical_data = pd.concat([self.full_historical_data, bar_df])
+        
+        # Execute if this is target time
+        if bar_time == target_time:
+            print(f"Bar closed at target time: {bar_time}")
+            self.log.log_info(f"Executing orders for {self.Symbol} at {bar_time}")
+            try:
+                self.execute_orders()
             except Exception as e:
-                self.log.log_error(f"Execute Order error occurred: {e}")
-        elif self.full_historical_data.tail(1).index[0] != bar.index[0] and bar.index.time != target_time:
-            self.full_historical_data = pd.concat([self.full_historical_data, bar], axis=0)
-            self.log.log_indicators(self.full_historical_data.tail(2))
-        elif self.historical_data.tail(1).index[0] != bar.index[0] and bar.index.time == target_time:
-            self.how_many_bars+=1
-            self.historical_data = pd.concat([self.historical_data, bar], axis=0)
-            self.full_historical_data = pd.concat([self.full_historical_data, bar], axis=0)
-            self.log.log_indicators(self.full_historical_data.tail(2))
-            self.log.log_symbol(symbol=self.Symbol,message=self.historical_data.tail(-1))
-            try:self.execute_orders()
-            except Exception as e:
-                self.log.log_error(f"Execute Order error occurred: {e}")
+                self.log.log_error(f"Execute Order error: {e}")
             
     
     def is_in_exec_time(self,bar_time):
