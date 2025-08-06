@@ -230,16 +230,19 @@ class Ticker:
             file.writelines(lines)
 
     def calculate_technical_indicators(self):
-        self.historical_data["Change"] = (
-            self.historical_data["close"] - self.historical_data["open"]
-        )
+        # Filter for target time bars only
+        target_time = self.get_target_execution_time(self.TIME)
+        daily_bars = self.full_historical_data[self.full_historical_data.index.time == target_time]
         
-        # Get exactly 5 days: from 7 days ago to 3 days ago
-        selected_days = self.historical_data.iloc[-self.DAYS:-self.OFFSET+1]
-        #selected_days = self.historical_data.tail(480) 
-        # Calculate average change
+        daily_bars["Change"] = daily_bars["close"] - daily_bars["open"]
+        
+        # Handle OFFSET=0 case
+        if self.OFFSET == 0:
+            selected_days = daily_bars.iloc[-self.DAYS:]  # Last DAYS bars including today
+        else:
+            selected_days = daily_bars.iloc[-self.DAYS:-(self.OFFSET-1)]  # From DAYS ago to OFFSET days ago
+        
         indicator = selected_days["Change"].mean()
-        
         return indicator
 
     def execute_orders(self):
