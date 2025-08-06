@@ -116,7 +116,7 @@ class Ticker:
             self.full_historical_data=self.historical_data
             target_time = self.get_target_execution_time(self.TIME)
             self.historical_data = self.historical_data[self.historical_data.index.time == target_time]
-            self.historical_data = self.full_historical_data.copy() 
+            #self.historical_data = self.full_historical_data.copy() 
             self.log.log_symbol(symbol=self.Symbol,message=self.historical_data)
             self.log.log_indicators(self.full_historical_data.tail(5))
             self.bars.updateEvent += self.bar_handler
@@ -235,8 +235,8 @@ class Ticker:
         )
         
         # Get exactly 5 days: from 7 days ago to 3 days ago
-        #selected_days = self.historical_data.iloc[-self.DAYS:-self.OFFSET+1]
-        selected_days = self.historical_data.tail(480) 
+        selected_days = self.historical_data.iloc[-self.DAYS:-self.OFFSET+1]
+        #selected_days = self.historical_data.tail(480) 
         # Calculate average change
         indicator = selected_days["Change"].mean()
         
