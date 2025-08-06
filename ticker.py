@@ -100,26 +100,27 @@ class Ticker:
         self.details = self.ib.reqContractDetails(self.contract)
         end_date = dt.datetime.now() - dt.timedelta(days=self.OFFSET)
         try:
-            self.bars = self.ib.reqHistoricalData(
-                self.contract,
-                endDateTime='',
-                durationStr='30 D', #f'{self.DAYS+self.DAYS} D'
-                barSizeSetting='15 mins',
-                whatToShow='TRADES',
-                useRTH=False,
-                keepUpToDate=True,
-                formatDate=1
-            )
-            self.historical_data = pd.DataFrame(self.bars)
-            self.historical_data["date"] = pd.to_datetime(self.historical_data["date"])
-            self.historical_data.set_index("date", inplace=True)
-            self.full_historical_data=self.historical_data
-            target_time = self.get_target_execution_time(self.TIME)
-            self.historical_data = self.historical_data[self.historical_data.index.time == target_time]
-            #self.historical_data = self.full_historical_data.copy() 
-            self.log.log_symbol(symbol=self.Symbol,message=self.historical_data)
-            self.log.log_indicators(self.full_historical_data.tail(5))
-            self.bars.updateEvent += self.bar_handler
+           self.bars = self.ib.reqHistoricalData(
+               self.contract,
+               endDateTime='',
+               durationStr='30 D',
+               barSizeSetting='15 mins',
+               whatToShow='TRADES',
+               useRTH=False,
+               keepUpToDate=True,
+               formatDate=1
+           )
+           self.full_historical_data = pd.DataFrame(self.bars)
+           self.full_historical_data["date"] = pd.to_datetime(self.full_historical_data["date"])
+           self.full_historical_data.set_index("date", inplace=True)
+           
+           # Keep only target time bars in historical_data
+           target_time = self.get_target_execution_time(self.TIME)
+           self.historical_data = self.full_historical_data[self.full_historical_data.index.time == target_time].copy()
+           
+           self.log.log_symbol(symbol=self.Symbol, message=self.historical_data)
+           self.log.log_indicators(self.full_historical_data.tail(5))
+           self.bars.updateEvent += self.bar_handler
         except Exception as e:
             self.log.log_error(f"An unexpected error occurred: {e}")
         """   
