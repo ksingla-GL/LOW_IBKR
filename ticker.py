@@ -208,17 +208,32 @@ class Ticker:
     def calculate_technical_indicators(self):
         # Filter for target time bars only
         target_time = self.get_target_execution_time(self.TIME)
-        daily_bars = self.full_historical_data[self.full_historical_data.index.time == target_time]
+        daily_bars = self.full_historical_data[self.full_historical_data.index.time == target_time].copy()
         
         daily_bars["Change"] = daily_bars["close"] - daily_bars["open"]
         
-        # Handle OFFSET=0 case
-        if self.OFFSET == 0:
-            selected_days = daily_bars.iloc[-self.DAYS:]  # Last DAYS bars including today
+        # Check if today's bar is in the data
+        today = datetime.now().date()
+        last_bar_date = daily_bars.index[-1].date() if len(daily_bars) > 0 else None
+        
+        if last_bar_date == today:
+            # Today's bar is present, exclude it
+            self.log.log_info(f"Today's bar found in data, excluding it")
+            # -8:-3 to get 7,6,5,4,3 days ago (excluding today at -1)
+            selected_days = daily_bars.iloc[-(self.DAYS+1):-(self.OFFSET)]  
         else:
-            selected_days = daily_bars.iloc[-self.DAYS:-(self.OFFSET-1)]  # From DAYS ago to OFFSET days ago
+            # Today's bar not present yet
+            self.log.log_info(f"Today's bar not in data yet")
+            # -7:-2 to get 7,6,5,4,3 days ago (when today isn't there)
+            selected_days = daily_bars.iloc[-self.DAYS:-(self.OFFSET-1)]
+        
+        # Debug logging
+        self.log.log_info(f"Calculating from {len(selected_days)} bars: {selected_days.index.tolist()}")
+        self.log.log_info(f"Changes: {selected_days['Change'].values}")
         
         indicator = selected_days["Change"].mean()
+        self.log.log_info(f"Final indicator value: {indicator}")
+        
         return indicator
 
     def execute_orders(self):
