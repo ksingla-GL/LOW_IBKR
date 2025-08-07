@@ -139,7 +139,7 @@ class Ticker:
         if not has_new_bar or len(bars) < 2:
             return
         
-        bar = bars[-2]  # Last completed bar
+        bar = bars[-1]  # Last completed bar
         bar_time = pd.to_datetime(bar.date).time()
         target_time = self.get_target_execution_time(self.TIME)
         
