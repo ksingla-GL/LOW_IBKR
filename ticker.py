@@ -100,68 +100,65 @@ class Ticker:
         self.details = self.ib.reqContractDetails(self.contract)
         end_date = dt.datetime.now() - dt.timedelta(days=self.OFFSET)
         try:
-           self.bars = self.ib.reqHistoricalData(
-               self.contract,
-               endDateTime='',
-               durationStr='30 D',
-               barSizeSetting='15 mins',
-               whatToShow='TRADES',
-               useRTH=False,
-               keepUpToDate=True,
-               formatDate=1
-           )
-           self.full_historical_data = pd.DataFrame(self.bars)
-           self.full_historical_data["date"] = pd.to_datetime(self.full_historical_data["date"])
-           self.full_historical_data.set_index("date", inplace=True)
-           
-           # Keep only target time bars in historical_data
-           target_time = self.get_target_execution_time(self.TIME)
-           self.historical_data = self.full_historical_data[self.full_historical_data.index.time == target_time].copy()
-           
-           self.log.log_symbol(symbol=self.Symbol, message=self.historical_data)
-           self.log.log_indicators(self.full_historical_data.tail(5))
-           self.bars.updateEvent += self.bar_handler
+            self.bars = self.ib.reqHistoricalData(
+                self.contract,
+                endDateTime='',
+                durationStr='30 D',
+                barSizeSetting='15 mins',
+                whatToShow='TRADES',
+                useRTH=False,
+                keepUpToDate=True,
+                formatDate=1
+            )
+            self.historical_data = pd.DataFrame(self.bars)
+            self.historical_data["date"] = pd.to_datetime(self.historical_data["date"])
+            self.historical_data.set_index("date", inplace=True)
+            self.full_historical_data=self.historical_data
+            target_time = self.get_target_execution_time(self.TIME)
+            self.historical_data = self.historical_data[self.historical_data.index.time == target_time]
+            self.log.log_symbol(symbol=self.Symbol,message=self.historical_data)
+            self.log.log_indicators(self.full_historical_data.tail(5))
+            self.bars.updateEvent += self.bar_handler
         except Exception as e:
             self.log.log_error(f"An unexpected error occurred: {e}")
-        """   
-        if len(self.historical_data) > 0:
-            current_time = datetime.now().time()
-            target_exec_time = datetime.strptime(self.TIME, "%H:%M").time()
-        
-        # If we're past execution time but haven't traded today
-        if current_time >= target_exec_time and current_time < time(16, 0):
-            self.log.log_info("Past execution time - executing based on latest bar")
-            self.ib.sleep(2)  # Let data settle
-            self.execute_orders()
-        """
+            
+    
 
     def bar_handler(self, bars, has_new_bar=False):
+        target_time = self.get_target_execution_time(self.TIME)
+        current_value=self.exec.get_net_liquidation()
+        self.MAXVALUE=max(self.MAXVALUE,current_value)
+        self.monitor_drawdown(self.MAXVALUE,current_value)
         if not has_new_bar or len(bars) < 2:
             return
-        
-        bar = bars[-1]  # Last completed bar
-        bar_time = pd.to_datetime(bar.date).time()
-        target_time = self.get_target_execution_time(self.TIME)
-        
-        # Always update full historical data
-        bar_df = pd.DataFrame([bar.dict()])
-        bar_df["date"] = pd.to_datetime(bar_df["date"])
-        bar_df = bar_df.set_index("date")
-        
-        # Update or append to full data
-        if self.full_historical_data.index[-1] == bar_df.index[0]:
-            self.full_historical_data.iloc[-1] = bar_df.iloc[0]
-        else:
-            self.full_historical_data = pd.concat([self.full_historical_data, bar_df])
-        
-        # Execute if this is target time
-        if bar_time == target_time:
-            print(f"Bar closed at target time: {bar_time}")
-            self.log.log_info(f"Executing orders for {self.Symbol} at {bar_time}")
-            try:
-                self.execute_orders()
+        bar = bars[-2]
+        self.last_active_bar=pd.DataFrame([bars[-1].dict()])
+        self.last_active_bar["date"] = pd.to_datetime(self.last_active_bar["date"])
+        self.last_active_bar = self.last_active_bar.set_index("date")
+        bar = pd.DataFrame([bar.dict()])
+        bar["date"] = pd.to_datetime(bar["date"])
+        bar = bar.set_index("date")
+        print(f"bar closed {bar.index.time}")
+        if self.historical_data.tail(1).index[0] == bar.index[0]:
+            self.historical_data.iloc[-1] = bar
+            self.full_historical_data.iloc[-1] = bar
+            self.log.log_indicators(self.full_historical_data.tail(2))
+            self.log.log_symbol(symbol=self.Symbol,message=self.historical_data.tail(-1))
+            try:self.execute_orders()
             except Exception as e:
-                self.log.log_error(f"Execute Order error: {e}")
+                self.log.log_error(f"Execute Order error occurred: {e}")
+        elif self.full_historical_data.tail(1).index[0] != bar.index[0] and bar.index.time != target_time:
+            self.full_historical_data = pd.concat([self.full_historical_data, bar], axis=0)
+            self.log.log_indicators(self.full_historical_data.tail(2))
+        elif self.historical_data.tail(1).index[0] != bar.index[0] and bar.index.time == target_time:
+            self.how_many_bars+=1
+            self.historical_data = pd.concat([self.historical_data, bar], axis=0)
+            self.full_historical_data = pd.concat([self.full_historical_data, bar], axis=0)
+            self.log.log_indicators(self.full_historical_data.tail(2))
+            self.log.log_symbol(symbol=self.Symbol,message=self.historical_data.tail(-1))
+            try:self.execute_orders()
+            except Exception as e:
+                self.log.log_error(f"Execute Order error occurred: {e}")
             
     
     def is_in_exec_time(self,bar_time):
@@ -238,9 +235,6 @@ class Ticker:
 
     def execute_orders(self):
         if self.LIQ==1:return
-        if hasattr(self, 'executed_today') and self.executed_today:
-            self.log.log_info("Already executed today - skipping")
-            return
         try:indicator = self.calculate_technical_indicators()
         except Exception as e:
             self.log.log_error(f"Calculate technical data error occurred: {e}"); return
@@ -281,7 +275,7 @@ class Ticker:
             quantity=trade_quantity
         )
 
-        if self.is_in_exec_time(self.historical_data.index[-1].time()) and trade_quantity > 0: #
+        if self.is_in_exec_time(self.historical_data.index[-1].time()) and trade_quantity > 0:
             try:
                 self.exec.place_market_order(self.contract, action, trade_quantity)
                 self.log.log_execution(f"Order placed successfully: Action={action}, Quantity={trade_quantity}")
