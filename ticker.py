@@ -213,6 +213,8 @@ class Ticker:
         today = datetime.now().date()
         last_bar_date = daily_bars.index[-1].date() if len(daily_bars) > 0 else None
         
+        selected_days = daily_bars.iloc[-self.DAYS:-(self.OFFSET-1)]
+        """
         if last_bar_date == today:
             # Today's bar is present, exclude it
             self.log.log_info(f"Today's bar found in data, excluding it")
@@ -223,7 +225,7 @@ class Ticker:
             self.log.log_info(f"Today's bar not in data yet")
             # -7:-2 to get 7,6,5,4,3 days ago (when today isn't there)
             selected_days = daily_bars.iloc[-self.DAYS:-(self.OFFSET-1)]
-        
+        """
         # Debug logging
         self.log.log_info(f"Calculating from {len(selected_days)} bars: {selected_days.index.tolist()}")
         self.log.log_info(f"Changes: {selected_days['Change'].values}")
