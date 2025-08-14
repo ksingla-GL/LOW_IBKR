@@ -19,12 +19,29 @@ class IBConfig:
     def open_connection(self):
         try:
             self.ib.connect(self.host, self.port, self.clientId)
-            self.log.log_info(
-                f"Connected to IB at {self.host}:{self.port} with clientId {self.clientId}"
-            )
+            self.log.log_info(f"Connected to IB at {self.host}:{self.port}")
+            
+            # Wait for connection to stabilize
+            time.sleep(2)
+            
+            # Verify connection is stable
+            for i in range(3):
+                if not self.ib.isConnected():
+                    self.log.log_error("Connection unstable, retrying...")
+                    time.sleep(2)
+                    self.ib.connect(self.host, self.port, self.clientId)
+                else:
+                    break
+                    
+            # Final verification
+            if self.ib.isConnected():
+                self.log.log_info("Connection verified and stable")
+            else:
+                raise Exception("Failed to establish stable connection")
+                
         except Exception as e:
-            self.log.log_error(f"An unexpected error occurred: {e}")
-            exit()
+            self.log.log_error(f"Connection error: {e}")
+            raise
 
     def close_connection(self):
         try:

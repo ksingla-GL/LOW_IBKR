@@ -74,14 +74,22 @@ def run_watchdog(config, logger: Logger, ib: IBConfig):
 
 def main():
     config = load_config(CONFIG_FILE)
-    logger=Logger()
+    logger = Logger()
     logger.log_info("Application started")
-    ib=IBConfig(port=7496, logging=logger)
+    
+    ib = IBConfig(port=7496, logging=logger)
     ib.open_connection()
-    # ib.ib.execDetailsEvent += _exec_details
-    read_trading_parameters(config,ib.ib,logger)
-    threading.Thread(target=run_watchdog(config,logger,ib)).start()
-
+    
+    # Let connection stabilize before starting strategies
+    time.sleep(3)
+    
+    read_trading_parameters(config, ib.ib, logger)
+    
+    # Start watchdog in thread with initial delay
+    watchdog_thread = threading.Thread(target=lambda: (time.sleep(10), run_watchdog(config, logger, ib)))
+    watchdog_thread.daemon = True
+    watchdog_thread.start()
+    
     try:
         ib.ib.run()
     except:
