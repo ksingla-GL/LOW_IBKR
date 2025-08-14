@@ -34,13 +34,29 @@ class IBConfig:
             self.log.log_error(f"An error occurred while disconnecting: {e}")
 
     def on_disconnected(self):
-        self.log.log_error(f"TWS disconnected. Reconnecting...")
-        while True:
+        self.log.log_error(f"TWS disconnected at {datetime.now()}. Starting reconnection...")
+        reconnect_attempts = 0
+        max_attempts = 100  # Retry for ~16 minutes
+        
+        while reconnect_attempts < max_attempts:
+            reconnect_attempts += 1
             try:
+                # Wait before attempting reconnection
+                time.sleep(10)
+                
+                # Try to reconnect with original parameters
+                self.log.log_info(f"Reconnection attempt #{reconnect_attempts}")
+                self.ib.connect(self.host, self.port, self.clientId)
+                
+                # Verify connection is actually established
                 if self.ib.isConnected():
-                    break
-                self.ib.connect(clientId=0)
-                self.ib.sleep(10)
+                    self.log.log_info(f"Successfully reconnected to TWS after {reconnect_attempts} attempts")
+                    
+                    # Set a flag to indicate reconnection happened
+                    self.reconnection_occurred = True
+                    return
+                    
             except Exception as e:
-                asyncio.run(asyncio.sleep(10))
-        self.log.log_info("Reconnected to TWS")
+                self.log.log_error(f"Reconnection attempt #{reconnect_attempts} failed: {e}")
+                
+        self.log.log_error(f"Failed to reconnect after {max_attempts} attempts")

@@ -37,20 +37,40 @@ def trading_parameter_recreation(config,ib:IB,logger,Symb):
         strategies["ES"]=Ticker(**config, ib=ib, logging=logger)
                 
 
-def run_watchdog(config,logger:Logger,ib:IBConfig):
+def run_watchdog(config, logger: Logger, ib: IBConfig):
+    consecutive_failures = 0
+    
     while True:
         try:
-            symbols_list=list(strategies.keys())
+            # Check main connection first
+            if not ib.ib.isConnected():
+                logger.log_error("Main connection lost - attempting reconnection")
+                ib.open_connection()
+                
+                # If reconnected, restart all strategies
+                if ib.ib.isConnected():
+                    logger.log_info("Connection restored - restarting all strategies")
+                    read_trading_parameters(config, ib.ib, logger)
+                    consecutive_failures = 0
+                else:
+                    consecutive_failures += 1
+                    if consecutive_failures > 5:
+                        logger.log_error("Multiple reconnection failures - waiting 5 minutes")
+                        time.sleep(300)
+            
+            # Normal watchdog operations
+            symbols_list = list(strategies.keys())
             for i in symbols_list:
-                tmp_symbol=strategies[i].watch_dog()
-                if tmp_symbol:trading_parameter_recreation(config=config,ib=ib.ib,logger=logger,Symb=tmp_symbol)
+                tmp_symbol = strategies[i].watch_dog()
+                if tmp_symbol:
+                    trading_parameter_recreation(config=config, ib=ib.ib, logger=logger, Symb=tmp_symbol)
+                    
         except Exception as e:
             logger.log_error(f"Watchdog Exception occurred: {e}")
+            consecutive_failures += 1
+            
         finally:
-            try:
-                asyncio.run(asyncio.sleep(60))
-            except Exception as e:
-                logger.log_error(f"asyncio Exception occurred: {e}")
+            time.sleep(60)  # Use time.sleep instead of asyncio
 
 def main():
     config = load_config(CONFIG_FILE)

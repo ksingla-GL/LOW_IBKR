@@ -286,27 +286,51 @@ class Ticker:
                 self.log.log_error(f"Execution error occurred: {e}")
 
     def watch_dog(self):
-        if len(self.full_historical_data)==0:
+        # First check if we're actually connected
+        if not self.ib.isConnected():
+            self.log.log_error(f"Connection lost for {self.Symbol}")
+            
+            # Try to reconnect
+            try:
+                self.log.log_info(f"Attempting to reconnect for {self.Symbol}")
+                config = self.ib.client  # Store reference to IBConfig if available
+                config.open_connection()
+                
+                # If reconnected, restart the symbol to restore market data
+                if self.ib.isConnected():
+                    self.log.log_info(f"Reconnected! Restarting {self.Symbol} to restore market data")
+                    return self.Symbol
+            except Exception as e:
+                self.log.log_error(f"Reconnection failed in watchdog: {e}")
+            return
+        
+        if len(self.full_historical_data) == 0:
             self.log.log_error(f"Historical data is empty")
             return
+            
         if not self.is_market_open():
             return
+            
         if self.is_during_maintenance():
-            self.data_maintinance=True
+            self.data_maintinance = True
             return
-        if self.data_maintinance==True:
-            self.data_maintinance=False
+            
+        if self.data_maintinance == True:
+            self.data_maintinance = False
             self.log.log_info(f"*************************************")
-            self.log.log_info(f"Restarting symbol after maintinance {self.Symbol} because of market data subscribtion")
+            self.log.log_info(f"Restarting symbol after maintenance {self.Symbol}")
             return self.Symbol
+        
+        # Check for stale data
         ny_time = datetime.now(ZoneInfo("America/New_York"))
-        if len(self.full_historical_data)>1:
-            bars_time_frame=((self.full_historical_data.index[-1] - self.full_historical_data.index[-2]).seconds)*2+60
+        if len(self.full_historical_data) > 1:
+            bars_time_frame = ((self.full_historical_data.index[-1] - self.full_historical_data.index[-2]).seconds) * 2 + 60
             diff = (ny_time - self.full_historical_data.index[-1]).seconds
-            if diff > bars_time_frame:
+            
+            # If data is stale OR no bar updates for too long
+            if diff > bars_time_frame or diff > 1800:  # 30 minutes max
                 self.log.log_info(f"*************************************")
-                self.log.log_info(f"Restarting symbol {self.Symbol} because of market data subscribtion")
-                # os.execl(sys.executable, sys.executable, *sys.argv)
+                self.log.log_info(f"Restarting symbol {self.Symbol} - data stale for {diff} seconds")
                 return self.Symbol
 
 
