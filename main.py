@@ -38,39 +38,19 @@ def trading_parameter_recreation(config,ib:IB,logger,Symb):
                 
 
 def run_watchdog(config, logger: Logger, ib: IBConfig):
-    consecutive_failures = 0
+    time.sleep(10)  # Initial delay before starting watchdog
     
     while True:
         try:
-            # Check main connection first
-            if not ib.ib.isConnected():
-                logger.log_error("Main connection lost - attempting reconnection")
-                ib.open_connection()
-                
-                # If reconnected, restart all strategies
-                if ib.ib.isConnected():
-                    logger.log_info("Connection restored - restarting all strategies")
-                    read_trading_parameters(config, ib.ib, logger)
-                    consecutive_failures = 0
-                else:
-                    consecutive_failures += 1
-                    if consecutive_failures > 5:
-                        logger.log_error("Multiple reconnection failures - waiting 5 minutes")
-                        time.sleep(300)
-            
-            # Normal watchdog operations
             symbols_list = list(strategies.keys())
             for i in symbols_list:
                 tmp_symbol = strategies[i].watch_dog()
                 if tmp_symbol:
                     trading_parameter_recreation(config=config, ib=ib.ib, logger=logger, Symb=tmp_symbol)
-                    
         except Exception as e:
             logger.log_error(f"Watchdog Exception occurred: {e}")
-            consecutive_failures += 1
-            
-        finally:
-            time.sleep(60)  # Use time.sleep instead of asyncio
+        
+        time.sleep(60)  # Simple sleep, no asyncio
 
 def main():
     config = load_config(CONFIG_FILE)
@@ -80,20 +60,20 @@ def main():
     ib = IBConfig(port=7496, logging=logger)
     ib.open_connection()
     
-    # Let connection stabilize before starting strategies
-    time.sleep(3)
+    # Simple delay for connection stability
+    time.sleep(2)
     
     read_trading_parameters(config, ib.ib, logger)
     
-    # Start watchdog in thread with initial delay
-    watchdog_thread = threading.Thread(target=lambda: (time.sleep(10), run_watchdog(config, logger, ib)))
+    # Fix the watchdog thread - no lambda
+    watchdog_thread = threading.Thread(target=run_watchdog, args=(config, logger, ib))
     watchdog_thread.daemon = True
     watchdog_thread.start()
     
     try:
         ib.ib.run()
-    except:
-        pass
+    except Exception as e:
+        logger.log_error(f"Main loop error: {e}")
     
 
 if __name__ == "__main__":
