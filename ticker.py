@@ -21,6 +21,7 @@ class Ticker:
         LIQ,
         LONG_BIAS,
         ib,
+        ibconfig=None,
         logging: Logger = None,
     ) -> None:
         self.Symbol: str = Symbol
@@ -34,6 +35,7 @@ class Ticker:
         self.LIQ:int = int(LIQ)
         self.LONG_BIAS: float = float(LONG_BIAS)
         self.ib: IB = ib
+        self.ibconfig = ibconfig
         self.details = None
         self.log = logging if logging is not None else Logger()
         self.historical_data: pd.DataFrame = pd.DataFrame()
@@ -290,18 +292,19 @@ class Ticker:
         if not self.ib.isConnected():
             self.log.log_error(f"Connection lost for {self.Symbol}")
             
-            # Try to reconnect
-            try:
-                self.log.log_info(f"Attempting to reconnect for {self.Symbol}")
-                config = self.ib.client  # Store reference to IBConfig if available
-                config.open_connection()
-                
-                # If reconnected, restart the symbol to restore market data
-                if self.ib.isConnected():
-                    self.log.log_info(f"Reconnected! Restarting {self.Symbol} to restore market data")
-                    return self.Symbol
-            except Exception as e:
-                self.log.log_error(f"Reconnection failed in watchdog: {e}")
+            # Try to reconnect using IBConfig if available
+            if self.ibconfig:
+                try:
+                    self.log.log_info(f"Attempting to reconnect for {self.Symbol}")
+                    if self.ibconfig.open_connection():
+                        # If reconnected, restart the symbol to restore market data
+                        if self.ib.isConnected():
+                            self.log.log_info(f"Reconnected! Restarting {self.Symbol} to restore market data")
+                            return self.Symbol
+                except Exception as e:
+                    self.log.log_error(f"Reconnection failed in watchdog: {e}")
+            else:
+                self.log.log_error(f"No IBConfig available for reconnection")
             return
         
         if len(self.full_historical_data) == 0:

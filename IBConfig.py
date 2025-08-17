@@ -1,5 +1,6 @@
 import asyncio
 import time
+from datetime import datetime
 from ib_async import *
 from Logger import Logger
 import nest_asyncio
@@ -15,14 +16,16 @@ class IBConfig:
         self.ib = IB()
         self.ib.disconnectedEvent += self.on_disconnected
         self.log = logging if logging is not None else Logger()
+        self.reconnection_occurred = False
 
     def open_connection(self):
         try:
             self.ib.connect(self.host, self.port, self.clientId)
             self.log.log_info(f"Connected to IB at {self.host}:{self.port} with clientId {self.clientId}")
+            return True
         except Exception as e:
             self.log.log_error(f"An unexpected error occurred: {e}")
-            exit()
+            return False
 
     def close_connection(self):
         try:
@@ -39,11 +42,12 @@ class IBConfig:
         while reconnect_attempts < max_attempts:
             reconnect_attempts += 1
             try:
-                # Wait before attempting reconnection
-                time.sleep(10)
+                # Exponential backoff: start with 5 seconds, max 60 seconds
+                wait_time = min(5 * (2 ** min(reconnect_attempts - 1, 4)), 60)
+                time.sleep(wait_time)
                 
                 # Try to reconnect with original parameters
-                self.log.log_info(f"Reconnection attempt #{reconnect_attempts}")
+                self.log.log_info(f"Reconnection attempt #{reconnect_attempts} (waiting {wait_time}s)")
                 self.ib.connect(self.host, self.port, self.clientId)
                 
                 # Verify connection is actually established
@@ -58,3 +62,10 @@ class IBConfig:
                 self.log.log_error(f"Reconnection attempt #{reconnect_attempts} failed: {e}")
                 
         self.log.log_error(f"Failed to reconnect after {max_attempts} attempts")
+
+    def check_and_reset_reconnection(self):
+        """Check if reconnection occurred and reset the flag"""
+        if hasattr(self, 'reconnection_occurred') and self.reconnection_occurred:
+            self.reconnection_occurred = False
+            return True
+        return False
