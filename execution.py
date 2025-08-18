@@ -1,4 +1,4 @@
-from ib_async import *
+from ib_insync import *
 from numpy import isnan
 from Logger import Logger
 

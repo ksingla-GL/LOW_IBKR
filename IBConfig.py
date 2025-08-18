@@ -1,7 +1,7 @@
 import asyncio
 import time
 from datetime import datetime
-from ib_async import *
+from ib_insync import *
 from Logger import Logger
 import nest_asyncio
 
@@ -35,7 +35,13 @@ class IBConfig:
             self.log.log_error(f"An error occurred while disconnecting: {e}")
 
     def on_disconnected(self):
+        """Non-blocking disconnection handler"""
         self.log.log_error(f"TWS disconnected at {datetime.now()}. Starting reconnection...")
+        # Use asyncio to handle reconnection without blocking the event loop
+        asyncio.create_task(self._async_reconnect())
+
+    async def _async_reconnect(self):
+        """Async reconnection logic to avoid blocking the event loop"""
         reconnect_attempts = 0
         max_attempts = 100  # Retry for ~16 minutes
         
@@ -44,7 +50,7 @@ class IBConfig:
             try:
                 # Exponential backoff: start with 5 seconds, max 60 seconds
                 wait_time = min(5 * (2 ** min(reconnect_attempts - 1, 4)), 60)
-                time.sleep(wait_time)
+                await asyncio.sleep(wait_time)  # Non-blocking sleep
                 
                 # Try to reconnect with original parameters
                 self.log.log_info(f"Reconnection attempt #{reconnect_attempts} (waiting {wait_time}s)")

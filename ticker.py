@@ -1,4 +1,4 @@
-from ib_async import *
+from ib_insync import *
 import pandas as pd
 from Logger import Logger
 from execution import *
