@@ -5,18 +5,15 @@ a = Analysis(
     pathex=[],
     binaries=[],
     datas=[('config.txt', '.')],
-    hiddenimports=['nest_asyncio'],
+    hiddenimports=['nest_asyncio', 'ib_insync', 'eventkit'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[
         # Heavy unused modules
         'IPython', 'sphinx', 'babel', 'jinja2', 'jedi', 'astroid',
-        # Core heavy libraries - more aggressive exclusion
-        'numpy', 'pandas', 'scipy', 'sklearn', 'tensorflow', 'torch', 'cv2',
-        # Pandas/numpy sub-modules
-        'pandas.plotting', 'pandas.io.formats.style', 'pandas.tests',
-        'numpy.tests', 'numpy.distutils', 'numpy.f2py', 'numpy.core',
+        # Core heavy libraries (safe exclusions)
+        'scipy', 'sklearn', 'tensorflow', 'torch', 'cv2',
         # Matplotlib (if not needed)
         'matplotlib', 'matplotlib.pyplot', 'matplotlib.backends',
         # GUI frameworks
@@ -24,11 +21,7 @@ a = Analysis(
         # Development tools
         'pytest', 'setuptools', 'wheel', 'pip',
         # Documentation
-        'docutils', 'markupsafe',
-        # Unused pandas extensions
-        'pandas_ta', 'ta-lib',
-        # Additional heavy modules
-        'certifi.cacert', 'dateutil', 'pytz'
+        'docutils', 'markupsafe'
     ],
     noarchive=False,
     optimize=2,  # Higher optimization
@@ -45,7 +38,7 @@ exe = EXE(
     name='main',
     debug=False,
     bootloader_ignore_signals=False,
-    strip=True,  # Strip debug symbols
+    strip=False,  # Disable stripping to avoid issues
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,

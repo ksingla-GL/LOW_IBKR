@@ -2,7 +2,7 @@ import logging
 import threading
 import asyncio
 from typing import Dict
-from ib_async import *
+from ib_insync import *
 from IBConfig import IBConfig
 from ticker import *
 from Logger import Logger
