@@ -2,7 +2,8 @@ from ib_insync import *
 import pandas as pd
 from Logger import Logger
 from execution import *
-from datetime import datetime, time, timedelta
+import time
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 import datetime as dt
 import os

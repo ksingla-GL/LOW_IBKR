@@ -1,11 +1,8 @@
-import asyncio
 import time
+import threading
 from datetime import datetime
 from ib_insync import *
 from Logger import Logger
-import nest_asyncio
-
-nest_asyncio.apply()
 
 
 class IBConfig:
@@ -36,12 +33,14 @@ class IBConfig:
 
     def on_disconnected(self):
         """Non-blocking disconnection handler"""
-        self.log.log_error(f"TWS disconnected at {datetime.now()}. Starting reconnection...")
-        # Use asyncio to handle reconnection without blocking the event loop
-        asyncio.create_task(self._async_reconnect())
+        self.log.log_error(f"TWS disconnected. Reconnecting...")
+        # Use threading to handle reconnection without blocking
+        thread = threading.Thread(target=self._reconnect)
+        thread.daemon = True
+        thread.start()
 
-    async def _async_reconnect(self):
-        """Async reconnection logic to avoid blocking the event loop"""
+    def _reconnect(self):
+        """Synchronous reconnection logic using threading"""
         reconnect_attempts = 0
         max_attempts = 100  # Retry for ~16 minutes
         
@@ -50,7 +49,7 @@ class IBConfig:
             try:
                 # Exponential backoff: start with 5 seconds, max 60 seconds
                 wait_time = min(5 * (2 ** min(reconnect_attempts - 1, 4)), 60)
-                await asyncio.sleep(wait_time)  # Non-blocking sleep
+                time.sleep(wait_time)  # Blocking sleep in thread
                 
                 # Try to reconnect with original parameters
                 self.log.log_info(f"Reconnection attempt #{reconnect_attempts} (waiting {wait_time}s)")
@@ -58,7 +57,7 @@ class IBConfig:
                 
                 # Verify connection is actually established
                 if self.ib.isConnected():
-                    self.log.log_info(f"Successfully reconnected to TWS after {reconnect_attempts} attempts")
+                    self.log.log_info(f"Reconnected to TWS")
                     
                     # Set a flag to indicate reconnection happened
                     self.reconnection_occurred = True

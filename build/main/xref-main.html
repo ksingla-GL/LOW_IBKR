@@ -151,15 +151,43 @@ imports:
  &#8226;   <a href="#encodings.uu_codec">encodings.uu_codec</a>
  &#8226;   <a href="#encodings.zlib_codec">encodings.zlib_codec</a>
  &#8226;   <a href="#enum">enum</a>
+ &#8226;   <a href="#eventkit">eventkit</a>
+ &#8226;   <a href="#eventkit.event">eventkit.event</a>
+ &#8226;   <a href="#eventkit.ops">eventkit.ops</a>
+ &#8226;   <a href="#eventkit.ops.aggregate">eventkit.ops.aggregate</a>
+ &#8226;   <a href="#eventkit.ops.array">eventkit.ops.array</a>
+ &#8226;   <a href="#eventkit.ops.combine">eventkit.ops.combine</a>
+ &#8226;   <a href="#eventkit.ops.create">eventkit.ops.create</a>
+ &#8226;   <a href="#eventkit.ops.misc">eventkit.ops.misc</a>
+ &#8226;   <a href="#eventkit.ops.op">eventkit.ops.op</a>
+ &#8226;   <a href="#eventkit.ops.select">eventkit.ops.select</a>
+ &#8226;   <a href="#eventkit.ops.timing">eventkit.ops.timing</a>
+ &#8226;   <a href="#eventkit.ops.transform">eventkit.ops.transform</a>
+ &#8226;   <a href="#eventkit.util">eventkit.util</a>
+ &#8226;   <a href="#eventkit.version">eventkit.version</a>
  &#8226;   <a href="#functools">functools</a>
  &#8226;   <a href="#genericpath">genericpath</a>
  &#8226;   <a href="#heapq">heapq</a>
- &#8226;   <a href="#ib_async">ib_async</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.connection">ib_insync.connection</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.decoder">ib_insync.decoder</a>
+ &#8226;   <a href="#ib_insync.flexreport">ib_insync.flexreport</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.order">ib_insync.order</a>
+ &#8226;   <a href="#ib_insync.ticker">ib_insync.ticker</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#ib_insync.version">ib_insync.version</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
  &#8226;   <a href="#io">io</a>
  &#8226;   <a href="#keyword">keyword</a>
  &#8226;   <a href="#linecache">linecache</a>
  &#8226;   <a href="#locale">locale</a>
  &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#nest_asyncio">nest_asyncio</a>
  &#8226;   <a href="#ntpath">ntpath</a>
  &#8226;   <a href="#operator">operator</a>
  &#8226;   <a href="#os">os</a>
@@ -177,6 +205,7 @@ imports:
  &#8226;   <a href="#stat">stat</a>
  &#8226;   <a href="#threading">threading</a>
  &#8226;   <a href="#ticker">ticker</a>
+ &#8226;   <a href="#time">time</a>
  &#8226;   <a href="#traceback">traceback</a>
  &#8226;   <a href="#types">types</a>
  &#8226;   <a href="#typing">typing</a>
@@ -304,7 +333,7 @@ imported by:
   <a target="code" href="" type="text/plain"><tt>'backports.zoneinfo'</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
-    <a href="#ib_async.util">ib_async.util</a>
+    <a href="#ib_insync.util">ib_insync.util</a>
 
   </div>
 
@@ -419,7 +448,7 @@ imported by:
   <a target="code" href="" type="text/plain"><tt>'matplotlib.lines'</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
-    <a href="#ib_async.util">ib_async.util</a>
+    <a href="#ib_insync.util">ib_insync.util</a>
 
   </div>
 
@@ -430,7 +459,7 @@ imported by:
   <a target="code" href="" type="text/plain"><tt>'matplotlib.patches'</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
-    <a href="#ib_async.util">ib_async.util</a>
+    <a href="#ib_insync.util">ib_insync.util</a>
 
   </div>
 
@@ -441,7 +470,7 @@ imported by:
   <a target="code" href="" type="text/plain"><tt>'matplotlib.pyplot'</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
-    <a href="#ib_async.util">ib_async.util</a>
+    <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#pandas.io.formats.style">pandas.io.formats.style</a>
 
   </div>
@@ -665,7 +694,7 @@ imported by:
   <a target="code" href="" type="text/plain"><tt>'org.python'</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
-    <a href="#copy">copy</a>
+    <a href="#pickle">pickle</a>
  &#8226;   <a href="#xml.sax">xml.sax</a>
 
   </div>
@@ -816,9 +845,9 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#Logger">Logger</a>
- &#8226;   <a href="#asyncio">asyncio</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#nest_asyncio">nest_asyncio</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#threading">threading</a>
  &#8226;   <a href="#time">time</a>
 
   </div>
@@ -1032,9 +1061,6 @@ imported by:
  &#8226;   <a href="#codeop">codeop</a>
  &#8226;   <a href="#dateutil.parser._parser">dateutil.parser._parser</a>
  &#8226;   <a href="#doctest">doctest</a>
- &#8226;   <a href="#eventkit.event">eventkit.event</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.order">ib_async.order</a>
  &#8226;   <a href="#markupsafe">markupsafe</a>
  &#8226;   <a href="#numpy._typing">numpy._typing</a>
  &#8226;   <a href="#numpy._typing._array_like">numpy._typing._array_like</a>
@@ -2538,8 +2564,7 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#IBConfig">IBConfig</a>
- &#8226;   <a href="#asyncio">asyncio</a>
+    <a href="#asyncio">asyncio</a>
  &#8226;   <a href="#asyncio.base_events">asyncio.base_events</a>
  &#8226;   <a href="#asyncio.base_futures">asyncio.base_futures</a>
  &#8226;   <a href="#asyncio.base_subprocess">asyncio.base_subprocess</a>
@@ -2573,12 +2598,12 @@ imported by:
  &#8226;   <a href="#eventkit.ops.create">eventkit.ops.create</a>
  &#8226;   <a href="#eventkit.ops.transform">eventkit.ops.transform</a>
  &#8226;   <a href="#eventkit.util">eventkit.util</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
- &#8226;   <a href="#ib_async.connection">ib_async.connection</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.ibcontroller">ib_async.ibcontroller</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.connection">ib_insync.connection</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
  &#8226;   <a href="#main.py">main.py</a>
  &#8226;   <a href="#nest_asyncio">nest_asyncio</a>
  &#8226;   <a href="#tornado.concurrent">tornado.concurrent</a>
@@ -5469,8 +5494,8 @@ imported by:
  &#8226;   <a href="#eventkit.ops.timing">eventkit.ops.timing</a>
  &#8226;   <a href="#eventkit.ops.transform">eventkit.ops.transform</a>
  &#8226;   <a href="#functools">functools</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
  &#8226;   <a href="#importlib.metadata">importlib.metadata</a>
  &#8226;   <a href="#importlib.metadata._collections">importlib.metadata._collections</a>
  &#8226;   <a href="#importlib.readers">importlib.readers</a>
@@ -5977,9 +6002,9 @@ imported by:
  &#8226;   <a href="#getpass">getpass</a>
  &#8226;   <a href="#glob">glob</a>
  &#8226;   <a href="#http.server">http.server</a>
- &#8226;   <a href="#ib_async.flexreport">ib_async.flexreport</a>
- &#8226;   <a href="#ib_async.ibcontroller">ib_async.ibcontroller</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+ &#8226;   <a href="#ib_insync.flexreport">ib_insync.flexreport</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
  &#8226;   <a href="#importlib._adapters">importlib._adapters</a>
  &#8226;   <a href="#importlib._common">importlib._common</a>
  &#8226;   <a href="#importlib.metadata">importlib.metadata</a>
@@ -6055,8 +6080,8 @@ imported by:
   <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/copy.py" type="text/plain"><tt>copy</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
-    <a href="#'org.python'">'org.python'</a>
- &#8226;   <a href="#copyreg">copyreg</a>
+    <a href="#copyreg">copyreg</a>
+ &#8226;   <a href="#org">org</a>
  &#8226;   <a href="#types">types</a>
  &#8226;   <a href="#weakref">weakref</a>
 
@@ -6072,7 +6097,7 @@ imported by:
  &#8226;   <a href="#gettext">gettext</a>
  &#8226;   <a href="#http.cookiejar">http.cookiejar</a>
  &#8226;   <a href="#http.server">http.server</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
  &#8226;   <a href="#logging.handlers">logging.handlers</a>
  &#8226;   <a href="#numpy.f2py.capi_maps">numpy.f2py.capi_maps</a>
  &#8226;   <a href="#numpy.f2py.cfuncs">numpy.f2py.cfuncs</a>
@@ -6279,16 +6304,14 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#eventkit.event">eventkit.event</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.decoder">ib_async.decoder</a>
- &#8226;   <a href="#ib_async.ibcontroller">ib_async.ibcontroller</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.order">ib_async.order</a>
- &#8226;   <a href="#ib_async.ticker">ib_async.ticker</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+    <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.decoder">ib_insync.decoder</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.order">ib_insync.order</a>
+ &#8226;   <a href="#ib_insync.ticker">ib_insync.ticker</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#pandas.core.dtypes.inference">pandas.core.dtypes.inference</a>
  &#8226;   <a href="#pandas.core.groupby.base">pandas.core.groupby.base</a>
  &#8226;   <a href="#pandas.core.internals.construction">pandas.core.internals.construction</a>
@@ -6314,7 +6337,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+    <a href="#IBConfig">IBConfig</a>
+ &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
  &#8226;   <a href="#PyQt5.QtGui">PyQt5.QtGui</a>
  &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
  &#8226;   <a href="#_strptime">_strptime</a>
@@ -6332,13 +6356,13 @@ imported by:
  &#8226;   <a href="#eventkit.util">eventkit.util</a>
  &#8226;   <a href="#http.cookiejar">http.cookiejar</a>
  &#8226;   <a href="#http.server">http.server</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.decoder">ib_async.decoder</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.ticker">ib_async.ticker</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.decoder">ib_insync.decoder</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.ticker">ib_insync.ticker</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
  &#8226;   <a href="#pandas._libs.tslib">pandas._libs.tslib</a>
  &#8226;   <a href="#pandas._libs.tslibs.conversion">pandas._libs.tslibs.conversion</a>
  &#8226;   <a href="#pandas._libs.tslibs.nattype">pandas._libs.tslibs.nattype</a>
@@ -6807,7 +6831,6 @@ imports:
 imported by:
     <a href="#dateutil.parser._parser">dateutil.parser._parser</a>
  &#8226;   <a href="#fractions">fractions</a>
- &#8226;   <a href="#ib_async.order">ib_async.order</a>
  &#8226;   <a href="#pandas._libs.lib">pandas._libs.lib</a>
  &#8226;   <a href="#pandas._testing">pandas._testing</a>
  &#8226;   <a href="#pandas.core.algorithms">pandas.core.algorithms</a>
@@ -9903,7 +9926,6 @@ imported by:
  &#8226;   <a href="#asyncio.constants">asyncio.constants</a>
  &#8226;   <a href="#chardet.enums">chardet.enums</a>
  &#8226;   <a href="#http">http</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
  &#8226;   <a href="#inspect">inspect</a>
  &#8226;   <a href="#main.py">main.py</a>
  &#8226;   <a href="#numpy.__config__">numpy.__config__</a>
@@ -9984,15 +10006,16 @@ imported by:
  &#8226;   <a href="#eventkit.ops">eventkit.ops</a>
  &#8226;   <a href="#eventkit.util">eventkit.util</a>
  &#8226;   <a href="#eventkit.version">eventkit.version</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
- &#8226;   <a href="#ib_async.connection">ib_async.connection</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.ibcontroller">ib_async.ibcontroller</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.order">ib_async.order</a>
- &#8226;   <a href="#ib_async.ticker">ib_async.ticker</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.connection">ib_insync.connection</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.order">ib_insync.order</a>
+ &#8226;   <a href="#ib_insync.ticker">ib_insync.ticker</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10003,9 +10026,7 @@ imported by:
   <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/eventkit/event.py" type="text/plain"><tt>eventkit.event</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
-    <a href="#__future__">__future__</a>
- &#8226;   <a href="#asyncio">asyncio</a>
- &#8226;   <a href="#dataclasses">dataclasses</a>
+    <a href="#asyncio">asyncio</a>
  &#8226;   <a href="#eventkit">eventkit</a>
  &#8226;   <a href="#eventkit.ops.aggregate">eventkit.ops.aggregate</a>
  &#8226;   <a href="#eventkit.ops.array">eventkit.ops.array</a>
@@ -10017,7 +10038,6 @@ imports:
  &#8226;   <a href="#eventkit.ops.timing">eventkit.ops.timing</a>
  &#8226;   <a href="#eventkit.ops.transform">eventkit.ops.transform</a>
  &#8226;   <a href="#eventkit.util">eventkit.util</a>
- &#8226;   <a href="#itertools">itertools</a>
  &#8226;   <a href="#logging">logging</a>
  &#8226;   <a href="#types">types</a>
  &#8226;   <a href="#typing">typing</a>
@@ -10032,6 +10052,7 @@ imported by:
  &#8226;   <a href="#eventkit.ops.misc">eventkit.ops.misc</a>
  &#8226;   <a href="#eventkit.ops.op">eventkit.ops.op</a>
  &#8226;   <a href="#eventkit.ops.timing">eventkit.ops.timing</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10056,6 +10077,7 @@ imported by:
  &#8226;   <a href="#eventkit.ops.select">eventkit.ops.select</a>
  &#8226;   <a href="#eventkit.ops.timing">eventkit.ops.timing</a>
  &#8226;   <a href="#eventkit.ops.transform">eventkit.ops.transform</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10079,6 +10101,7 @@ imports:
 imported by:
     <a href="#eventkit">eventkit</a>
  &#8226;   <a href="#eventkit.event">eventkit.event</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10100,6 +10123,7 @@ imports:
 imported by:
     <a href="#eventkit">eventkit</a>
  &#8226;   <a href="#eventkit.event">eventkit.event</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10124,6 +10148,7 @@ imported by:
     <a href="#eventkit">eventkit</a>
  &#8226;   <a href="#eventkit.event">eventkit.event</a>
  &#8226;   <a href="#eventkit.ops.transform">eventkit.ops.transform</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10147,6 +10172,7 @@ imports:
 imported by:
     <a href="#eventkit">eventkit</a>
  &#8226;   <a href="#eventkit.event">eventkit.event</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10166,6 +10192,7 @@ imports:
 imported by:
     <a href="#eventkit">eventkit</a>
  &#8226;   <a href="#eventkit.event">eventkit.event</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10193,6 +10220,7 @@ imported by:
  &#8226;   <a href="#eventkit.ops.select">eventkit.ops.select</a>
  &#8226;   <a href="#eventkit.ops.timing">eventkit.ops.timing</a>
  &#8226;   <a href="#eventkit.ops.transform">eventkit.ops.transform</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10212,6 +10240,7 @@ imports:
 imported by:
     <a href="#eventkit">eventkit</a>
  &#8226;   <a href="#eventkit.event">eventkit.event</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10233,6 +10262,7 @@ imports:
 imported by:
     <a href="#eventkit">eventkit</a>
  &#8226;   <a href="#eventkit.event">eventkit.event</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10258,6 +10288,7 @@ imported by:
     <a href="#eventkit">eventkit</a>
  &#8226;   <a href="#eventkit.event">eventkit.event</a>
  &#8226;   <a href="#eventkit.ops.aggregate">eventkit.ops.aggregate</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10284,6 +10315,7 @@ imported by:
  &#8226;   <a href="#eventkit.ops.select">eventkit.ops.select</a>
  &#8226;   <a href="#eventkit.ops.timing">eventkit.ops.timing</a>
  &#8226;   <a href="#eventkit.ops.transform">eventkit.ops.transform</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10295,12 +10327,12 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#eventkit">eventkit</a>
- &#8226;   <a href="#importlib.metadata">importlib.metadata</a>
 
   </div>
   <div class="import">
 imported by:
     <a href="#eventkit">eventkit</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -10312,7 +10344,7 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#Logger">Logger</a>
- &#8226;   <a href="#ib_async">ib_async</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
  &#8226;   <a href="#numpy">numpy</a>
 
   </div>
@@ -10477,7 +10509,6 @@ imported by:
  &#8226;   <a href="#email.charset">email.charset</a>
  &#8226;   <a href="#eventkit.ops.combine">eventkit.ops.combine</a>
  &#8226;   <a href="#fnmatch">fnmatch</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
  &#8226;   <a href="#importlib._common">importlib._common</a>
  &#8226;   <a href="#importlib.metadata">importlib.metadata</a>
  &#8226;   <a href="#importlib.metadata._functools">importlib.metadata._functools</a>
@@ -11048,24 +11079,24 @@ imported by:
 </div>
 
 <div class="node">
-  <a name="ib_async"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/__init__.py" type="text/plain"><tt>ib_async</tt></a>
+  <a name="ib_insync"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/__init__.py" type="text/plain"><tt>ib_insync</tt></a>
 <span class="moduletype">Package</span>  <div class="import">
 imports:
     <a href="#dataclasses">dataclasses</a>
  &#8226;   <a href="#eventkit">eventkit</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.flexreport">ib_async.flexreport</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.ibcontroller">ib_async.ibcontroller</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.order">ib_async.order</a>
- &#8226;   <a href="#ib_async.ticker">ib_async.ticker</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
- &#8226;   <a href="#ib_async.version">ib_async.version</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.flexreport">ib_insync.flexreport</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.order">ib_insync.order</a>
+ &#8226;   <a href="#ib_insync.ticker">ib_insync.ticker</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#ib_insync.version">ib_insync.version</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
  &#8226;   <a href="#sys">sys</a>
 
   </div>
@@ -11073,20 +11104,20 @@ imports:
 imported by:
     <a href="#IBConfig">IBConfig</a>
  &#8226;   <a href="#execution">execution</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
- &#8226;   <a href="#ib_async.connection">ib_async.connection</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.decoder">ib_async.decoder</a>
- &#8226;   <a href="#ib_async.flexreport">ib_async.flexreport</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.ibcontroller">ib_async.ibcontroller</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.order">ib_async.order</a>
- &#8226;   <a href="#ib_async.ticker">ib_async.ticker</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
- &#8226;   <a href="#ib_async.version">ib_async.version</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.connection">ib_insync.connection</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.decoder">ib_insync.decoder</a>
+ &#8226;   <a href="#ib_insync.flexreport">ib_insync.flexreport</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.order">ib_insync.order</a>
+ &#8226;   <a href="#ib_insync.ticker">ib_insync.ticker</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#ib_insync.version">ib_insync.version</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
  &#8226;   <a href="#main.py">main.py</a>
  &#8226;   <a href="#ticker">ticker</a>
 
@@ -11095,19 +11126,19 @@ imported by:
 </div>
 
 <div class="node">
-  <a name="ib_async.client"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/client.py" type="text/plain"><tt>ib_async.client</tt></a>
+  <a name="ib_insync.client"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/client.py" type="text/plain"><tt>ib_insync.client</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#asyncio">asyncio</a>
  &#8226;   <a href="#collections">collections</a>
  &#8226;   <a href="#eventkit">eventkit</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.connection">ib_async.connection</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.decoder">ib_async.decoder</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.connection">ib_insync.connection</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.decoder">ib_insync.decoder</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#io">io</a>
  &#8226;   <a href="#logging">logging</a>
  &#8226;   <a href="#math">math</a>
@@ -11118,94 +11149,98 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
+    <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="ib_async.connection"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/connection.py" type="text/plain"><tt>ib_async.connection</tt></a>
+  <a name="ib_insync.connection"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/connection.py" type="text/plain"><tt>ib_insync.connection</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#asyncio">asyncio</a>
  &#8226;   <a href="#eventkit">eventkit</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
 
   </div>
   <div class="import">
 imported by:
-    <a href="#ib_async.client">ib_async.client</a>
+    <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="ib_async.contract"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/contract.py" type="text/plain"><tt>ib_async.contract</tt></a>
+  <a name="ib_insync.contract"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/contract.py" type="text/plain"><tt>ib_insync.contract</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#dataclasses">dataclasses</a>
  &#8226;   <a href="#datetime">datetime</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#typing">typing</a>
 
   </div>
   <div class="import">
 imported by:
-    <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
- &#8226;   <a href="#ib_async.decoder">ib_async.decoder</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.ibcontroller">ib_async.ibcontroller</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.order">ib_async.order</a>
- &#8226;   <a href="#ib_async.ticker">ib_async.ticker</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+    <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.decoder">ib_insync.decoder</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.order">ib_insync.order</a>
+ &#8226;   <a href="#ib_insync.ticker">ib_insync.ticker</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="ib_async.decoder"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/decoder.py" type="text/plain"><tt>ib_async.decoder</tt></a>
+  <a name="ib_insync.decoder"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/decoder.py" type="text/plain"><tt>ib_insync.decoder</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#dataclasses">dataclasses</a>
  &#8226;   <a href="#datetime">datetime</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.order">ib_async.order</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.order">ib_insync.order</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
  &#8226;   <a href="#logging">logging</a>
  &#8226;   <a href="#typing">typing</a>
 
   </div>
   <div class="import">
 imported by:
-    <a href="#ib_async.client">ib_async.client</a>
+    <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="ib_async.flexreport"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/flexreport.py" type="text/plain"><tt>ib_async.flexreport</tt></a>
+  <a name="ib_insync.flexreport"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/flexreport.py" type="text/plain"><tt>ib_insync.flexreport</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#contextlib">contextlib</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#logging">logging</a>
  &#8226;   <a href="#time">time</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
@@ -11214,30 +11249,30 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#ib_async">ib_async</a>
+    <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="ib_async.ib"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/ib.py" type="text/plain"><tt>ib_async.ib</tt></a>
+  <a name="ib_insync.ib"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/ib.py" type="text/plain"><tt>ib_insync.ib</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#asyncio">asyncio</a>
  &#8226;   <a href="#copy">copy</a>
  &#8226;   <a href="#datetime">datetime</a>
- &#8226;   <a href="#enum">enum</a>
  &#8226;   <a href="#eventkit">eventkit</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.order">ib_async.order</a>
- &#8226;   <a href="#ib_async.ticker">ib_async.ticker</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.order">ib_insync.order</a>
+ &#8226;   <a href="#ib_insync.ticker">ib_insync.ticker</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
  &#8226;   <a href="#logging">logging</a>
  &#8226;   <a href="#time">time</a>
  &#8226;   <a href="#typing">typing</a>
@@ -11245,27 +11280,27 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.ibcontroller">ib_async.ibcontroller</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+    <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="ib_async.ibcontroller"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/ibcontroller.py" type="text/plain"><tt>ib_async.ibcontroller</tt></a>
+  <a name="ib_insync.ibcontroller"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/ibcontroller.py" type="text/plain"><tt>ib_insync.ibcontroller</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#asyncio">asyncio</a>
  &#8226;   <a href="#contextlib">contextlib</a>
  &#8226;   <a href="#dataclasses">dataclasses</a>
  &#8226;   <a href="#eventkit">eventkit</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#logging">logging</a>
  &#8226;   <a href="#subprocess">subprocess</a>
  &#8226;   <a href="#sys">sys</a>
@@ -11274,98 +11309,99 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#ib_async">ib_async</a>
+    <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="ib_async.objects"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/objects.py" type="text/plain"><tt>ib_async.objects</tt></a>
-<span class="moduletype">SourceModule</span>  <div class="import">
-imports:
-    <a href="#__future__">__future__</a>
- &#8226;   <a href="#dataclasses">dataclasses</a>
- &#8226;   <a href="#datetime">datetime</a>
- &#8226;   <a href="#eventkit">eventkit</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
- &#8226;   <a href="#typing">typing</a>
-
-  </div>
-  <div class="import">
-imported by:
-    <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
- &#8226;   <a href="#ib_async.decoder">ib_async.decoder</a>
- &#8226;   <a href="#ib_async.flexreport">ib_async.flexreport</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.order">ib_async.order</a>
- &#8226;   <a href="#ib_async.ticker">ib_async.ticker</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
-
-  </div>
-
-</div>
-
-<div class="node">
-  <a name="ib_async.order"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/order.py" type="text/plain"><tt>ib_async.order</tt></a>
-<span class="moduletype">SourceModule</span>  <div class="import">
-imports:
-    <a href="#__future__">__future__</a>
- &#8226;   <a href="#dataclasses">dataclasses</a>
- &#8226;   <a href="#decimal">decimal</a>
- &#8226;   <a href="#eventkit">eventkit</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
- &#8226;   <a href="#typing">typing</a>
-
-  </div>
-  <div class="import">
-imported by:
-    <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.decoder">ib_async.decoder</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
-
-  </div>
-
-</div>
-
-<div class="node">
-  <a name="ib_async.ticker"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/ticker.py" type="text/plain"><tt>ib_async.ticker</tt></a>
+  <a name="ib_insync.objects"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/objects.py" type="text/plain"><tt>ib_insync.objects</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#dataclasses">dataclasses</a>
  &#8226;   <a href="#datetime">datetime</a>
  &#8226;   <a href="#eventkit">eventkit</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#typing">typing</a>
 
   </div>
   <div class="import">
 imported by:
-    <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+    <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.decoder">ib_insync.decoder</a>
+ &#8226;   <a href="#ib_insync.flexreport">ib_insync.flexreport</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.order">ib_insync.order</a>
+ &#8226;   <a href="#ib_insync.ticker">ib_insync.ticker</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="ib_async.util"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/util.py" type="text/plain"><tt>ib_async.util</tt></a>
+  <a name="ib_insync.order"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/order.py" type="text/plain"><tt>ib_insync.order</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#dataclasses">dataclasses</a>
+ &#8226;   <a href="#eventkit">eventkit</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.decoder">ib_insync.decoder</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
+ &#8226;   <a href="#main.py">main.py</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="ib_insync.ticker"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/ticker.py" type="text/plain"><tt>ib_insync.ticker</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#dataclasses">dataclasses</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#eventkit">eventkit</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
+ &#8226;   <a href="#main.py">main.py</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="ib_insync.util"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/util.py" type="text/plain"><tt>ib_insync.util</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#'backports.zoneinfo'">'backports.zoneinfo'</a>
@@ -11376,9 +11412,8 @@ imports:
  &#8226;   <a href="#dataclasses">dataclasses</a>
  &#8226;   <a href="#datetime">datetime</a>
  &#8226;   <a href="#eventkit">eventkit</a>
- &#8226;   <a href="#functools">functools</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
  &#8226;   <a href="#importlib">importlib</a>
  &#8226;   <a href="#logging">logging</a>
  &#8226;   <a href="#math">math</a>
@@ -11393,67 +11428,66 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
- &#8226;   <a href="#ib_async.connection">ib_async.connection</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.decoder">ib_async.decoder</a>
- &#8226;   <a href="#ib_async.flexreport">ib_async.flexreport</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.ibcontroller">ib_async.ibcontroller</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.order">ib_async.order</a>
- &#8226;   <a href="#ib_async.ticker">ib_async.ticker</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+    <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.connection">ib_insync.connection</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.decoder">ib_insync.decoder</a>
+ &#8226;   <a href="#ib_insync.flexreport">ib_insync.flexreport</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.order">ib_insync.order</a>
+ &#8226;   <a href="#ib_insync.ticker">ib_insync.ticker</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="ib_async.version"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/version.py" type="text/plain"><tt>ib_async.version</tt></a>
+  <a name="ib_insync.version"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/version.py" type="text/plain"><tt>ib_insync.version</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
-    <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#importlib.metadata">importlib.metadata</a>
+    <a href="#ib_insync">ib_insync</a>
 
   </div>
   <div class="import">
 imported by:
-    <a href="#ib_async">ib_async</a>
+    <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="ib_async.wrapper"></a>
-  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_async/wrapper.py" type="text/plain"><tt>ib_async.wrapper</tt></a>
+  <a name="ib_insync.wrapper"></a>
+  <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/site-packages/ib_insync/wrapper.py" type="text/plain"><tt>ib_insync.wrapper</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#asyncio">asyncio</a>
  &#8226;   <a href="#collections">collections</a>
  &#8226;   <a href="#contextlib">contextlib</a>
- &#8226;   <a href="#dataclasses">dataclasses</a>
  &#8226;   <a href="#datetime">datetime</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.order">ib_async.order</a>
- &#8226;   <a href="#ib_async.ticker">ib_async.ticker</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.order">ib_insync.order</a>
+ &#8226;   <a href="#ib_insync.ticker">ib_insync.ticker</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#logging">logging</a>
- &#8226;   <a href="#time">time</a>
  &#8226;   <a href="#typing">typing</a>
 
   </div>
   <div class="import">
 imported by:
-    <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.decoder">ib_async.decoder</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
+    <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.decoder">ib_insync.decoder</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -11484,7 +11518,7 @@ imported by:
  &#8226;   <a href="#charset_normalizer.cd">charset_normalizer.cd</a>
  &#8226;   <a href="#charset_normalizer.utils">charset_normalizer.utils</a>
  &#8226;   <a href="#dateutil">dateutil</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#importlib">importlib</a>
  &#8226;   <a href="#importlib._abc">importlib._abc</a>
  &#8226;   <a href="#importlib._adapters">importlib._adapters</a>
@@ -11714,9 +11748,7 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#eventkit.version">eventkit.version</a>
- &#8226;   <a href="#ib_async.version">ib_async.version</a>
- &#8226;   <a href="#importlib._bootstrap_external">importlib._bootstrap_external</a>
+    <a href="#importlib._bootstrap_external">importlib._bootstrap_external</a>
  &#8226;   <a href="#importlib.metadata">importlib.metadata</a>
  &#8226;   <a href="#importlib.metadata._adapters">importlib.metadata._adapters</a>
  &#8226;   <a href="#importlib.metadata._collections">importlib.metadata._collections</a>
@@ -12030,7 +12062,7 @@ imported by:
  &#8226;   <a href="#http.client">http.client</a>
  &#8226;   <a href="#http.cookiejar">http.cookiejar</a>
  &#8226;   <a href="#http.server">http.server</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
  &#8226;   <a href="#importlib.resources">importlib.resources</a>
  &#8226;   <a href="#logging">logging</a>
  &#8226;   <a href="#logging.handlers">logging.handlers</a>
@@ -12129,7 +12161,6 @@ imported by:
  &#8226;   <a href="#concurrent.futures.process">concurrent.futures.process</a>
  &#8226;   <a href="#concurrent.futures.thread">concurrent.futures.thread</a>
  &#8226;   <a href="#dateutil.rrule">dateutil.rrule</a>
- &#8226;   <a href="#eventkit.event">eventkit.event</a>
  &#8226;   <a href="#eventkit.ops.aggregate">eventkit.ops.aggregate</a>
  &#8226;   <a href="#eventkit.ops.create">eventkit.ops.create</a>
  &#8226;   <a href="#fnmatch">fnmatch</a>
@@ -12406,13 +12437,13 @@ imported by:
  &#8226;   <a href="#eventkit.event">eventkit.event</a>
  &#8226;   <a href="#hashlib">hashlib</a>
  &#8226;   <a href="#http.cookiejar">http.cookiejar</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
- &#8226;   <a href="#ib_async.decoder">ib_async.decoder</a>
- &#8226;   <a href="#ib_async.flexreport">ib_async.flexreport</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.ibcontroller">ib_async.ibcontroller</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.decoder">ib_insync.decoder</a>
+ &#8226;   <a href="#ib_insync.flexreport">ib_insync.flexreport</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
  &#8226;   <a href="#logging.handlers">logging.handlers</a>
  &#8226;   <a href="#main.py">main.py</a>
  &#8226;   <a href="#multiprocessing.util">multiprocessing.util</a>
@@ -12574,8 +12605,8 @@ imported by:
  &#8226;   <a href="#dateutil.relativedelta">dateutil.relativedelta</a>
  &#8226;   <a href="#dateutil.rrule">dateutil.rrule</a>
  &#8226;   <a href="#fractions">fractions</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#numpy._core._internal">numpy._core._internal</a>
  &#8226;   <a href="#numpy._core._machar">numpy._core._machar</a>
  &#8226;   <a href="#numpy._core.numeric">numpy._core.numeric</a>
@@ -13472,8 +13503,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#IBConfig">IBConfig</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+    <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#main.py">main.py</a>
 
   </div>
 
@@ -20627,7 +20658,7 @@ imported by:
   <a target="code" href="" type="text/plain"><tt>org</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
-    <a href="#pickle">pickle</a>
+    <a href="#copy">copy</a>
 
   </div>
 
@@ -20975,7 +21006,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#Logger">Logger</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#pandas">pandas</a>
  &#8226;   <a href="#pandas._config">pandas._config</a>
  &#8226;   <a href="#pandas._libs">pandas._libs</a>
@@ -33432,14 +33463,14 @@ imported by:
   <a target="code" href="///C:/Users/kshit/anaconda3/envs/low_ibkr/lib/pickle.py" type="text/plain"><tt>pickle</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
-    <a href="#_compat_pickle">_compat_pickle</a>
+    <a href="#'org.python'">'org.python'</a>
+ &#8226;   <a href="#_compat_pickle">_compat_pickle</a>
  &#8226;   <a href="#_pickle">_pickle</a>
  &#8226;   <a href="#codecs">codecs</a>
  &#8226;   <a href="#copyreg">copyreg</a>
  &#8226;   <a href="#functools">functools</a>
  &#8226;   <a href="#io">io</a>
  &#8226;   <a href="#itertools">itertools</a>
- &#8226;   <a href="#org">org</a>
  &#8226;   <a href="#pprint">pprint</a>
  &#8226;   <a href="#re">re</a>
  &#8226;   <a href="#struct">struct</a>
@@ -34734,7 +34765,7 @@ imports:
 imported by:
     <a href="#asyncio.proactor_events">asyncio.proactor_events</a>
  &#8226;   <a href="#asyncio.unix_events">asyncio.unix_events</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#multiprocessing.forkserver">multiprocessing.forkserver</a>
  &#8226;   <a href="#multiprocessing.managers">multiprocessing.managers</a>
  &#8226;   <a href="#multiprocessing.popen_fork">multiprocessing.popen_fork</a>
@@ -35403,7 +35434,7 @@ imported by:
  &#8226;   <a href="#dateutil.tz.win">dateutil.tz.win</a>
  &#8226;   <a href="#gettext">gettext</a>
  &#8226;   <a href="#gzip">gzip</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
  &#8226;   <a href="#logging.handlers">logging.handlers</a>
  &#8226;   <a href="#multiprocessing.connection">multiprocessing.connection</a>
  &#8226;   <a href="#multiprocessing.forkserver">multiprocessing.forkserver</a>
@@ -35463,7 +35494,7 @@ imported by:
  &#8226;   <a href="#asyncio.unix_events">asyncio.unix_events</a>
  &#8226;   <a href="#asyncio.windows_utils">asyncio.windows_utils</a>
  &#8226;   <a href="#http.server">http.server</a>
- &#8226;   <a href="#ib_async.ibcontroller">ib_async.ibcontroller</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
  &#8226;   <a href="#multiprocessing.util">multiprocessing.util</a>
  &#8226;   <a href="#numpy.f2py">numpy.f2py</a>
  &#8226;   <a href="#numpy.f2py._backends._meson">numpy.f2py._backends._meson</a>
@@ -35549,9 +35580,9 @@ imported by:
  &#8226;   <a href="#gzip">gzip</a>
  &#8226;   <a href="#http.client">http.client</a>
  &#8226;   <a href="#http.server">http.server</a>
- &#8226;   <a href="#ib_async">ib_async</a>
- &#8226;   <a href="#ib_async.ibcontroller">ib_async.ibcontroller</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#importlib">importlib</a>
  &#8226;   <a href="#importlib._bootstrap_external">importlib._bootstrap_external</a>
  &#8226;   <a href="#importlib.metadata">importlib.metadata</a>
@@ -35906,7 +35937,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#_threading_local">_threading_local</a>
+    <a href="#IBConfig">IBConfig</a>
+ &#8226;   <a href="#_threading_local">_threading_local</a>
  &#8226;   <a href="#asyncio.base_events">asyncio.base_events</a>
  &#8226;   <a href="#asyncio.events">asyncio.events</a>
  &#8226;   <a href="#asyncio.mixins">asyncio.mixins</a>
@@ -35968,9 +36000,10 @@ imports:
     <a href="#Logger">Logger</a>
  &#8226;   <a href="#datetime">datetime</a>
  &#8226;   <a href="#execution">execution</a>
- &#8226;   <a href="#ib_async">ib_async</a>
+ &#8226;   <a href="#ib_insync">ib_insync</a>
  &#8226;   <a href="#os">os</a>
  &#8226;   <a href="#pandas">pandas</a>
+ &#8226;   <a href="#time">time</a>
  &#8226;   <a href="#zoneinfo">zoneinfo</a>
 
   </div>
@@ -36009,13 +36042,13 @@ imported by:
  &#8226;   <a href="#gzip">gzip</a>
  &#8226;   <a href="#http.cookiejar">http.cookiejar</a>
  &#8226;   <a href="#http.server">http.server</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
- &#8226;   <a href="#ib_async.flexreport">ib_async.flexreport</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.flexreport">ib_insync.flexreport</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#logging">logging</a>
  &#8226;   <a href="#logging.handlers">logging.handlers</a>
+ &#8226;   <a href="#main.py">main.py</a>
  &#8226;   <a href="#multiprocessing.connection">multiprocessing.connection</a>
  &#8226;   <a href="#multiprocessing.managers">multiprocessing.managers</a>
  &#8226;   <a href="#multiprocessing.pool">multiprocessing.pool</a>
@@ -36038,6 +36071,7 @@ imported by:
  &#8226;   <a href="#subprocess">subprocess</a>
  &#8226;   <a href="#tarfile">tarfile</a>
  &#8226;   <a href="#threading">threading</a>
+ &#8226;   <a href="#ticker">ticker</a>
  &#8226;   <a href="#tornado.ioloop">tornado.ioloop</a>
  &#8226;   <a href="#tornado.process">tornado.process</a>
  &#8226;   <a href="#unittest.runner">unittest.runner</a>
@@ -36981,16 +37015,16 @@ imported by:
  &#8226;   <a href="#eventkit.ops.op">eventkit.ops.op</a>
  &#8226;   <a href="#eventkit.util">eventkit.util</a>
  &#8226;   <a href="#functools">functools</a>
- &#8226;   <a href="#ib_async.client">ib_async.client</a>
- &#8226;   <a href="#ib_async.contract">ib_async.contract</a>
- &#8226;   <a href="#ib_async.decoder">ib_async.decoder</a>
- &#8226;   <a href="#ib_async.ib">ib_async.ib</a>
- &#8226;   <a href="#ib_async.ibcontroller">ib_async.ibcontroller</a>
- &#8226;   <a href="#ib_async.objects">ib_async.objects</a>
- &#8226;   <a href="#ib_async.order">ib_async.order</a>
- &#8226;   <a href="#ib_async.ticker">ib_async.ticker</a>
- &#8226;   <a href="#ib_async.util">ib_async.util</a>
- &#8226;   <a href="#ib_async.wrapper">ib_async.wrapper</a>
+ &#8226;   <a href="#ib_insync.client">ib_insync.client</a>
+ &#8226;   <a href="#ib_insync.contract">ib_insync.contract</a>
+ &#8226;   <a href="#ib_insync.decoder">ib_insync.decoder</a>
+ &#8226;   <a href="#ib_insync.ib">ib_insync.ib</a>
+ &#8226;   <a href="#ib_insync.ibcontroller">ib_insync.ibcontroller</a>
+ &#8226;   <a href="#ib_insync.objects">ib_insync.objects</a>
+ &#8226;   <a href="#ib_insync.order">ib_insync.order</a>
+ &#8226;   <a href="#ib_insync.ticker">ib_insync.ticker</a>
+ &#8226;   <a href="#ib_insync.util">ib_insync.util</a>
+ &#8226;   <a href="#ib_insync.wrapper">ib_insync.wrapper</a>
  &#8226;   <a href="#importlib._common">importlib._common</a>
  &#8226;   <a href="#importlib.abc">importlib.abc</a>
  &#8226;   <a href="#importlib.metadata">importlib.metadata</a>
@@ -38130,7 +38164,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#http.cookiejar">http.cookiejar</a>
- &#8226;   <a href="#ib_async.flexreport">ib_async.flexreport</a>
+ &#8226;   <a href="#ib_insync.flexreport">ib_insync.flexreport</a>
  &#8226;   <a href="#numpy.lib._datasource">numpy.lib._datasource</a>
  &#8226;   <a href="#pandas.io.common">pandas.io.common</a>
  &#8226;   <a href="#xml.dom.xmlbuilder">xml.dom.xmlbuilder</a>
@@ -38931,7 +38965,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#_elementtree">_elementtree</a>
- &#8226;   <a href="#ib_async.flexreport">ib_async.flexreport</a>
+ &#8226;   <a href="#ib_insync.flexreport">ib_insync.flexreport</a>
  &#8226;   <a href="#pandas.io.formats.xml">pandas.io.formats.xml</a>
  &#8226;   <a href="#pandas.io.xml">pandas.io.xml</a>
  &#8226;   <a href="#xml.etree">xml.etree</a>
@@ -39675,7 +39709,7 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#ib_async.util">ib_async.util</a>
+    <a href="#ib_insync.util">ib_insync.util</a>
  &#8226;   <a href="#ticker">ticker</a>
  &#8226;   <a href="#zoneinfo">zoneinfo</a>
  &#8226;   <a href="#zoneinfo._common">zoneinfo._common</a>
