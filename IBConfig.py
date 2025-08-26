@@ -14,6 +14,7 @@ class IBConfig:
         self.ib.disconnectedEvent += self.on_disconnected
         self.log = logging if logging is not None else Logger()
         self.reconnection_occurred = False
+        self._reconnecting = False
 
     def open_connection(self):
         try:
@@ -32,41 +33,72 @@ class IBConfig:
             self.log.log_error(f"An error occurred while disconnecting: {e}")
 
     def on_disconnected(self):
-        """Non-blocking disconnection handler"""
-        self.log.log_error(f"TWS disconnected. Reconnecting...")
+        """Non-blocking disconnection handler with improved reliability"""
+        if hasattr(self, '_reconnecting') and self._reconnecting:
+            # Already reconnecting, don't start another thread
+            return
+            
+        self.log.log_error(f"TWS disconnected. Starting reconnection process...")
+        self._reconnecting = True
+        
         # Use threading to handle reconnection without blocking
         thread = threading.Thread(target=self._reconnect)
         thread.daemon = True
         thread.start()
 
     def _reconnect(self):
-        """Synchronous reconnection logic using threading"""
+        """Synchronous reconnection logic with improved error handling"""
         reconnect_attempts = 0
-        max_attempts = 100  # Retry for ~16 minutes
+        max_attempts = 20  # Reduced from 100 to prevent endless loops
         
-        while reconnect_attempts < max_attempts:
-            reconnect_attempts += 1
-            try:
-                # Exponential backoff: start with 5 seconds, max 60 seconds
-                wait_time = min(5 * (2 ** min(reconnect_attempts - 1, 4)), 60)
-                time.sleep(wait_time)  # Blocking sleep in thread
+        try:
+            while reconnect_attempts < max_attempts:
+                reconnect_attempts += 1
                 
-                # Try to reconnect with original parameters
-                self.log.log_info(f"Reconnection attempt #{reconnect_attempts} (waiting {wait_time}s)")
-                self.ib.connect(self.host, self.port, self.clientId)
-                
-                # Verify connection is actually established
+                # Check if we're already connected (might have been reconnected elsewhere)
                 if self.ib.isConnected():
-                    self.log.log_info(f"Reconnected to TWS")
-                    
-                    # Set a flag to indicate reconnection happened
+                    self.log.log_info("Connection already established, stopping reconnection")
+                    self._reconnecting = False
                     self.reconnection_occurred = True
                     return
-                    
-            except Exception as e:
-                self.log.log_error(f"Reconnection attempt #{reconnect_attempts} failed: {e}")
                 
-        self.log.log_error(f"Failed to reconnect after {max_attempts} attempts")
+                try:
+                    # Progressive backoff: 5, 10, 15, 20, 30, 30... seconds
+                    wait_time = min(5 * reconnect_attempts, 30)
+                    self.log.log_info(f"Reconnection attempt #{reconnect_attempts} in {wait_time}s")
+                    time.sleep(wait_time)
+                    
+                    # Ensure we're fully disconnected before attempting to reconnect
+                    try:
+                        if self.ib.isConnected():
+                            self.ib.disconnect()
+                        time.sleep(1)  # Brief pause to ensure clean disconnect
+                    except:
+                        pass  # Ignore disconnect errors
+                    
+                    # Try to reconnect with original parameters
+                    self.ib.connect(self.host, self.port, self.clientId)
+                    
+                    # Verify connection is actually established and stable
+                    if self.ib.isConnected():
+                        # Wait a moment to ensure the connection is stable
+                        time.sleep(2)
+                        if self.ib.isConnected():
+                            self.log.log_info(f"Successfully reconnected to TWS after {reconnect_attempts} attempts")
+                            self._reconnecting = False
+                            self.reconnection_occurred = True
+                            return
+                        
+                except Exception as e:
+                    self.log.log_error(f"Reconnection attempt #{reconnect_attempts} failed: {e}")
+                    # Continue to next attempt
+                    
+        except Exception as e:
+            self.log.log_error(f"Critical error in reconnection process: {e}")
+        finally:
+            self._reconnecting = False
+            
+        self.log.log_error(f"Failed to reconnect after {max_attempts} attempts - giving up")
 
     def check_and_reset_reconnection(self):
         """Check if reconnection occurred and reset the flag"""

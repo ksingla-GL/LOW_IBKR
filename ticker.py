@@ -3,9 +3,9 @@ import pandas as pd
 from Logger import Logger
 from execution import *
 import time
-from datetime import datetime, timedelta
-from zoneinfo import ZoneInfo
 import datetime as dt
+from datetime import timedelta
+from zoneinfo import ZoneInfo
 import os
 
 class Ticker:
@@ -60,7 +60,7 @@ class Ticker:
         """Initialize the leverage ratio log file with headers"""
         with open(self.leverage_log_file, 'a') as f:
             f.write("\n" + "="*80 + "\n")
-            f.write(f"Leverage Ratio Log for {self.Symbol} - Started at {datetime.now()}\n")
+            f.write(f"Leverage Ratio Log for {self.Symbol} - Started at {dt.datetime.now()}\n")
             f.write("="*80 + "\n")
             f.write("Timestamp | Base Indicator | Long Bias | Raw Leverage | Net Leverage | Net Liquidation | Position to Achieve | Action | Quantity\n")
             f.write("-"*80 + "\n")
@@ -68,7 +68,7 @@ class Ticker:
     
     def log_leverage_ratio(self, indicator, raw_leverage, Net_leverage, net_liquidation, pos_to_achieve, action, quantity):
         """Log the leverage ratio calculation to a notepad file"""
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        timestamp = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
         log_entry = (
             f"{timestamp} | "
@@ -103,6 +103,7 @@ class Ticker:
         self.details = self.ib.reqContractDetails(self.contract)
         end_date = dt.datetime.now() - dt.timedelta(days=self.OFFSET)
         try:
+            self.log.log_info(f"Requesting historical data for {self.Symbol} with keepUpToDate=True")
             self.bars = self.ib.reqHistoricalData(
                 self.contract,
                 endDateTime='',
@@ -113,36 +114,74 @@ class Ticker:
                 keepUpToDate=True,
                 formatDate=1
             )
+            self.log.log_info(f"Historical data request successful. Got {len(self.bars)} bars")
+            
             self.historical_data = pd.DataFrame(self.bars)
             self.historical_data["date"] = pd.to_datetime(self.historical_data["date"])
             self.historical_data.set_index("date", inplace=True)
             self.full_historical_data=self.historical_data
+            
             target_time = self.get_target_execution_time(self.TIME)
+            self.log.log_info(f"Filtering data for target time: {target_time}")
+            
             self.historical_data = self.historical_data[self.historical_data.index.time == target_time]
+            self.log.log_info(f"After filtering: {len(self.historical_data)} trading bars, {len(self.full_historical_data)} total bars")
+            
+            # Log the most recent bars
+            if len(self.full_historical_data) > 0:
+                last_bar = self.full_historical_data.tail(1).index[0]
+                self.log.log_info(f"Most recent bar timestamp: {last_bar}")
+            
             self.log.log_symbol(symbol=self.Symbol,message=self.historical_data)
             self.log.log_indicators(self.full_historical_data.tail(5))
+            
+            # Subscribe to bar updates
+            self.log.log_info("Subscribing to bar updates via updateEvent")
             self.bars.updateEvent += self.bar_handler
+            self.log.log_info("Bar handler subscription complete")
+            
         except Exception as e:
-            self.log.log_error(f"An unexpected error occurred: {e}")
+            self.log.log_error(f"Historical data setup error: {e}")
+            import traceback
+            self.log.log_error(f"Full traceback: {traceback.format_exc()}")
             
     
 
     def bar_handler(self, bars, has_new_bar=False):
+        # Debug logging to understand bar updates
+        self.log.log_info(f"BAR HANDLER CALLED: has_new_bar={has_new_bar}, bars_count={len(bars)}")
+        
         target_time = self.get_target_execution_time(self.TIME)
+        self.log.log_info(f"Target execution time: {target_time}")
+        
         current_value=self.exec.get_net_liquidation()
         self.MAXVALUE=max(self.MAXVALUE,current_value)
         self.monitor_drawdown(self.MAXVALUE,current_value)
-        if not has_new_bar or len(bars) < 2:
+        
+        if not has_new_bar:
+            self.log.log_info("No new bar - exiting handler")
             return
+        if len(bars) < 2:
+            self.log.log_info(f"Not enough bars ({len(bars)}) - exiting handler")
+            return
+            
         bar = bars[-2]
+        self.log.log_info(f"Processing new bar from bars[-2]")
         self.last_active_bar=pd.DataFrame([bars[-1].dict()])
         self.last_active_bar["date"] = pd.to_datetime(self.last_active_bar["date"])
         self.last_active_bar = self.last_active_bar.set_index("date")
         bar = pd.DataFrame([bar.dict()])
         bar["date"] = pd.to_datetime(bar["date"])
         bar = bar.set_index("date")
+        
+        bar_time = bar.index[0].time()
+        self.log.log_info(f"New bar closed at: {bar.index[0]} (time: {bar_time})")
+        self.log.log_info(f"Target time check: {bar_time} == {target_time} ? {bar_time == target_time}")
+        
         print(f"bar closed {bar.index.time}")
+        
         if self.historical_data.tail(1).index[0] == bar.index[0]:
+            self.log.log_info("Updating existing bar (same timestamp)")
             self.historical_data.iloc[-1] = bar
             self.full_historical_data.iloc[-1] = bar
             self.log.log_indicators(self.full_historical_data.tail(2))
@@ -150,18 +189,24 @@ class Ticker:
             try:self.execute_orders()
             except Exception as e:
                 self.log.log_error(f"Execute Order error occurred: {e}")
-        elif self.full_historical_data.tail(1).index[0] != bar.index[0] and bar.index.time != target_time:
+        elif self.full_historical_data.tail(1).index[0] != bar.index[0] and bar_time != target_time:
+            self.log.log_info(f"Adding new bar to full_historical_data (not target time: {bar_time} != {target_time})")
             self.full_historical_data = pd.concat([self.full_historical_data, bar], axis=0)
             self.log.log_indicators(self.full_historical_data.tail(2))
-        elif self.historical_data.tail(1).index[0] != bar.index[0] and bar.index.time == target_time:
+        elif self.historical_data.tail(1).index[0] != bar.index[0] and bar_time == target_time:
             self.how_many_bars+=1
+            self.log.log_info(f"*** TRADING BAR DETECTED *** Time: {bar_time} matches target: {target_time}")
+            self.log.log_info(f"Adding bar to both historical_data and full_historical_data")
             self.historical_data = pd.concat([self.historical_data, bar], axis=0)
             self.full_historical_data = pd.concat([self.full_historical_data, bar], axis=0)
             self.log.log_indicators(self.full_historical_data.tail(2))
             self.log.log_symbol(symbol=self.Symbol,message=self.historical_data.tail(-1))
+            self.log.log_info("*** EXECUTING ORDERS ***")
             try:self.execute_orders()
             except Exception as e:
                 self.log.log_error(f"Execute Order error occurred: {e}")
+        else:
+            self.log.log_info(f"Bar doesn't match any condition - skipping")
             
     
     def is_in_exec_time(self,bar_time):
@@ -213,7 +258,7 @@ class Ticker:
         daily_bars["Change"] = daily_bars["close"] - daily_bars["open"]
         
         # Check if today's bar is in the data
-        today = datetime.now().date()
+        today = dt.datetime.now().date()
         last_bar_date = daily_bars.index[-1].date() if len(daily_bars) > 0 else None
         
         selected_days = daily_bars.iloc[-self.DAYS:-(self.OFFSET-1)]
@@ -292,21 +337,9 @@ class Ticker:
         # First check if we're actually connected
         if not self.ib.isConnected():
             self.log.log_error(f"Connection lost for {self.Symbol}")
-            
-            # Try to reconnect using IBConfig if available
-            if self.ibconfig:
-                try:
-                    self.log.log_info(f"Attempting to reconnect for {self.Symbol}")
-                    if self.ibconfig.open_connection():
-                        # If reconnected, restart the symbol to restore market data
-                        if self.ib.isConnected():
-                            self.log.log_info(f"Reconnected! Restarting {self.Symbol} to restore market data")
-                            return self.Symbol
-                except Exception as e:
-                    self.log.log_error(f"Reconnection failed in watchdog: {e}")
-            else:
-                self.log.log_error(f"No IBConfig available for reconnection")
-            return
+            # Don't attempt reconnection here - let IBConfig handle it automatically
+            # Just signal that this symbol needs to be restarted when connection is restored
+            return self.Symbol
         
         if len(self.full_historical_data) == 0:
             self.log.log_error(f"Historical data is empty")
@@ -326,7 +359,7 @@ class Ticker:
             return self.Symbol
         
         # Check for stale data
-        ny_time = datetime.now(ZoneInfo("America/New_York"))
+        ny_time = dt.datetime.now(ZoneInfo("America/New_York"))
         if len(self.full_historical_data) > 1:
             bars_time_frame = ((self.full_historical_data.index[-1] - self.full_historical_data.index[-2]).seconds) * 2 + 60
             diff = (ny_time - self.full_historical_data.index[-1]).seconds
@@ -349,9 +382,9 @@ class Ticker:
                 if 'CLOSED' in sess:continue
                 if len(sess.split("-"))>1:
                     start, end = sess.split("-")[:2]
-                    start_time = datetime.strptime(start, "%Y%m%d:%H%M").replace(tzinfo=ZoneInfo(tz))
-                    end_time = datetime.strptime(end, "%Y%m%d:%H%M").replace(tzinfo=ZoneInfo(tz))
-                    now = datetime.now(ZoneInfo(tz))
+                    start_time = dt.datetime.strptime(start, "%Y%m%d:%H%M").replace(tzinfo=ZoneInfo(tz))
+                    end_time = dt.datetime.strptime(end, "%Y%m%d:%H%M").replace(tzinfo=ZoneInfo(tz))
+                    now = dt.datetime.now(ZoneInfo(tz))
                     if start_time <= now <= end_time:
                         return True
             return False
@@ -365,10 +398,10 @@ class Ticker:
         # Define the maintenance start and end times in CT (Central Time)
         maintenance_start = time(23, 0)  # 11:00 PM CT
         maintenance_duration = timedelta(minutes=10)  # Typically 5-10 minutes
-        maintenance_end = (datetime.combine(datetime.today(), maintenance_start) + maintenance_duration).time()
+        maintenance_end = (dt.datetime.combine(dt.datetime.today(), maintenance_start) + maintenance_duration).time()
 
         # Get the current time in CT
-        current_time = datetime.now(ZoneInfo("America/Chicago")).time()
+        current_time = dt.datetime.now(ZoneInfo("America/Chicago")).time()
 
         # Check if the current time is within the maintenance period
         if maintenance_start <= current_time <= maintenance_end:
@@ -381,7 +414,7 @@ class Ticker:
         closing_end = time(17, 0)    # 5:00 PM CT
 
         # Get the current time in CT
-        current_time = datetime.now(ZoneInfo("America/Chicago")).time()
+        current_time = dt.datetime.now(ZoneInfo("America/Chicago")).time()
 
         # Check if the current time is within the futures data closing period
         return closing_start <= current_time <= closing_end
