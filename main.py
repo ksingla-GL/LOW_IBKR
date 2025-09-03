@@ -4,10 +4,14 @@ import time
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from typing import Dict
+import nest_asyncio
 from ib_insync import *
 from IBConfig import IBConfig
 from ticker import *
 from Logger import Logger
+
+# Apply nest_asyncio to handle event loop conflicts
+nest_asyncio.apply()
 
 logging.getLogger().addHandler(logging.NullHandler())
 
