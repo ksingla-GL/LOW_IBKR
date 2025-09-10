@@ -26,6 +26,7 @@ class Ticker:
         logging: Logger = None,
         FORCE_TRADE_ONCE=0,
         TRADE_QTY_OVERRIDE=0,
+        LAST_EXECUTION_KEY='',
     ) -> None:
         self.Symbol: str = Symbol
         self.LEVAMOUNT: float = float(LEVAMOUNT)
@@ -37,6 +38,7 @@ class Ticker:
         self.MAXVALUE: float = float(MAXVALUE)
         self.LIQ:int = int(LIQ)
         self.LONG_BIAS: float = float(LONG_BIAS)
+        self.LAST_EXECUTION_KEY: str = str(LAST_EXECUTION_KEY)
         self.ib: IB = ib
         self.ibconfig = ibconfig
         self.details = None
@@ -356,6 +358,14 @@ class Ticker:
 
     def execute_orders(self):
         if self.LIQ==1:return
+        
+        # Check if already executed at this time today to prevent multiple runs
+        today = dt.datetime.now().date()
+        execution_key = f"{today}_{self.TIME}"  # e.g., "2025-09-10_9:30"
+        if self.LAST_EXECUTION_KEY and self.LAST_EXECUTION_KEY == execution_key:
+            self.log.log_info(f"Orders already executed for {execution_key} - skipping duplicate execution")
+            return
+        
         try:indicator = self.calculate_technical_indicators()
         except Exception as e:
             self.log.log_error(f"Calculate technical data error occurred: {e}"); return
@@ -371,6 +381,8 @@ class Ticker:
                     return
                 self.exec.place_market_order_nb(self.trade_contract, action, qty)
                 self.log.log_execution(f"Forced one-shot order submitted: Action={action}, Quantity={qty}")
+                # Mark execution key to prevent duplicate runs today
+                self._update_execution_key(execution_key)
                 self._reset_force_trade_flag()
             except Exception as e:
                 self.log.log_error(f"Forced trade error: {e}")
@@ -421,6 +433,8 @@ class Ticker:
                 self.exec.place_market_order_nb(self.trade_contract, action, trade_quantity)
                 self.log.log_execution(f"Order placed successfully: Action={action}, Quantity={trade_quantity}")
                 self.log.log_symbol_dataframe(self.Symbol, self.historical_data.iloc[-1:])
+                # Mark execution key to prevent duplicate runs today
+                self._update_execution_key(execution_key)
             except Exception as e:
                 self.log.log_error(f"Execution error occurred: {e}")
 
@@ -529,3 +543,27 @@ class Ticker:
             self.FORCE_TRADE_ONCE = 0
         except Exception as e:
             self.log.log_error(f"Failed to reset FORCE_TRADE_ONCE flag: {e}")
+
+    def _update_execution_key(self, execution_key):
+        """Update LAST_EXECUTION_KEY in config.txt to prevent duplicate executions."""
+        try:
+            file_path = "config.txt"
+            with open(file_path, 'r') as f:
+                lines = f.readlines()
+            found = False
+            for i, line in enumerate(lines):
+                if line.startswith("LAST_EXECUTION_KEY="):
+                    lines[i] = f"LAST_EXECUTION_KEY={execution_key}\n"
+                    found = True
+                    break
+            if not found:
+                # Ensure the last line has a proper newline before appending
+                if lines and not lines[-1].endswith('\n'):
+                    lines[-1] = lines[-1] + '\n'
+                lines.append(f"LAST_EXECUTION_KEY={execution_key}\n")
+            with open(file_path, 'w') as f:
+                f.writelines(lines)
+            self.LAST_EXECUTION_KEY = execution_key
+            self.log.log_info(f"Updated execution key to: {execution_key}")
+        except Exception as e:
+            self.log.log_error(f"Failed to update execution key: {e}")

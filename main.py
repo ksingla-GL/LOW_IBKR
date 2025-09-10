@@ -25,8 +25,17 @@ def load_config(file_path):
         with open(file_path, 'r') as file:
             lines = file.readlines()
             for line in lines:
-                key, value = line.strip().split('=')
-                config[key.strip()] = float(value) if value.strip().replace('.', '').isdigit() else value.strip()
+                if '=' in line:
+                    key, value = line.strip().split('=', 1)  # Split only on first '='
+                    key = key.strip()
+                    value = value.strip()
+                    # Handle numeric values, empty values, or string values
+                    if value == '':
+                        config[key] = ''
+                    elif value.replace('.', '').replace('-', '').isdigit():
+                        config[key] = float(value)
+                    else:
+                        config[key] = value
     except Exception as e:
         print(f"Error loading config: {e}")
     return config
