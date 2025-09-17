@@ -51,6 +51,7 @@ class Ticker:
         pd.set_option('display.width', 1000)
         self.how_many_bars=0
         self.data_maintinance=False
+        self.executed_today = None  # Track "date_time" of execution to prevent duplicates
         self.get_historical_data()
         # Force-trade settings (optional in config)
         try:
@@ -356,6 +357,13 @@ class Ticker:
 
     def execute_orders(self):
         if self.LIQ==1:return
+
+        # Check if already executed today at this time
+        execution_key = f"{dt.datetime.now().date()}_{self.TIME}"
+        if self.executed_today == execution_key:
+            self.log.log_info(f"Already executed for {execution_key}, skipping")
+            return
+
         try:indicator = self.calculate_technical_indicators()
         except Exception as e:
             self.log.log_error(f"Calculate technical data error occurred: {e}"); return
@@ -369,8 +377,11 @@ class Ticker:
                 if self.trade_contract is None:
                     self.log.log_error("No trade contract resolved; cannot place forced order.")
                     return
-                self.exec.place_market_order_nb(self.trade_contract, action, qty)
+                self.exec.place_market_order(self.trade_contract, action, qty)
                 self.log.log_execution(f"Forced one-shot order submitted: Action={action}, Quantity={qty}")
+                # Mark as executed to prevent duplicate trades
+                self.executed_today = execution_key
+                self.log.log_info(f"Marked forced execution complete for {execution_key}")
                 self._reset_force_trade_flag()
             except Exception as e:
                 self.log.log_error(f"Forced trade error: {e}")
@@ -418,9 +429,12 @@ class Ticker:
             return
         if self.is_in_exec_time(self.historical_data.index[-1].time()) and trade_quantity > 0:
             try:
-                self.exec.place_market_order_nb(self.trade_contract, action, trade_quantity)
+                self.exec.place_market_order(self.trade_contract, action, trade_quantity)
                 self.log.log_execution(f"Order placed successfully: Action={action}, Quantity={trade_quantity}")
                 self.log.log_symbol_dataframe(self.Symbol, self.historical_data.iloc[-1:])
+                # Mark as executed to prevent duplicate trades
+                self.executed_today = execution_key
+                self.log.log_info(f"Marked execution complete for {execution_key}")
             except Exception as e:
                 self.log.log_error(f"Execution error occurred: {e}")
 
