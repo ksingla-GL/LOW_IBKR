@@ -358,17 +358,17 @@ class Ticker:
 
     def execute_orders(self):
         if self.LIQ==1:return
-
-        try:indicator = self.calculate_technical_indicators()
-        except Exception as e:
-            self.log.log_error(f"Calculate technical data error occurred: {e}"); return
-
-        # Check if already executed at this time today to prevent duplicate orders
+        
+        # Check if already executed at this time today to prevent multiple runs
         today = dt.datetime.now().date()
         execution_key = f"{today}_{self.TIME}"  # e.g., "2025-09-10_9:30"
         if self.LAST_EXECUTION_KEY and self.LAST_EXECUTION_KEY == execution_key:
             self.log.log_info(f"Orders already executed for {execution_key} - skipping duplicate execution")
             return
+        
+        try:indicator = self.calculate_technical_indicators()
+        except Exception as e:
+            self.log.log_error(f"Calculate technical data error occurred: {e}"); return
 
         # Forced one-shot trade path: avoids blocking IB calls in event-loop callbacks
         if getattr(self, 'FORCE_TRADE_ONCE', 0) == 1:
