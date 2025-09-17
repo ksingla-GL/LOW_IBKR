@@ -96,18 +96,3 @@ class ExecuteSignals():
     def get_contract_increment(self, contract):
         cd = self.ib.reqContractDetails(contract)[0]
         return self.ib.reqMarketRule(int(cd.marketRuleIds.split(",")[0]))[-1].increment
-    
-    def refresh_account_summary(self):
-        """Refresh account summary data"""
-        try:
-            self.ib.reqAccountSummary()
-            self.ib.sleep(1)  # Give it time to update
-        except Exception as e:
-            self.logger.log_error(f"Error refreshing account summary: {e}")
-    
-    def place_market_order_nb(self, contract, action, quantity):
-        """Place market order non-blocking"""
-        order = MarketOrder(action, quantity)
-        trade = self.ib.placeOrder(contract, order)
-        self.logger.log_execution(f"Market order placed: Action={action}, Quantity={quantity}")
-        return trade
