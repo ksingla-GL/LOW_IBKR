@@ -358,18 +358,17 @@ class Ticker:
     def execute_orders(self):
         if self.LIQ==1:return
 
-        # Check if already executed today at this time
-        execution_key = f"{dt.datetime.now().date()}_{self.TIME}"
-        if self.executed_today == execution_key:
-            self.log.log_info(f"Already executed for {execution_key}, skipping")
-            return
-
         try:indicator = self.calculate_technical_indicators()
         except Exception as e:
             self.log.log_error(f"Calculate technical data error occurred: {e}"); return
 
         # Forced one-shot trade path: avoids blocking IB calls in event-loop callbacks
         if getattr(self, 'FORCE_TRADE_ONCE', 0) == 1:
+            execution_key = f"{dt.datetime.now().date()}_{self.TIME}"
+            # Check if already executed today at this time for forced trades
+            if self.executed_today == execution_key:
+                self.log.log_info(f"Already executed forced trade for {execution_key}, skipping")
+                return
             try:
                 raw_leverage = indicator + self.LONG_BIAS
                 action = "BUY" if raw_leverage >= 0 else "SELL"
@@ -389,14 +388,14 @@ class Ticker:
 
         # Get net liquidation value
         net_liquidation = self.exec.get_net_liquidation()
-        
+
         # Calculate leverage ratios
         raw_leverage = indicator + self.LONG_BIAS
         Net_leverage = max(min(raw_leverage, self.LEVAMOUNT), -self.LEVAMOUNT)
-        
+
         # Calculate position to achieve
         pos_to_achieve = Net_leverage * self.exec.get_available_funds()
-        
+
         contract_price=self.full_historical_data.iloc[-1]["close"]
         multiplier=50
         contract_value=contract_price*multiplier
@@ -412,7 +411,7 @@ class Ticker:
             action = "SELL"
             trade_quantity = current_position - quantity
 
-        # Log leverage ratio information
+        # Log leverage ratio information (always log for monitoring)
         self.log_leverage_ratio(
             indicator=indicator,
             raw_leverage=raw_leverage,
@@ -422,6 +421,12 @@ class Ticker:
             action=action,
             quantity=trade_quantity
         )
+
+        # Check if already executed today at this time (only for trade placement)
+        execution_key = f"{dt.datetime.now().date()}_{self.TIME}"
+        if self.executed_today == execution_key:
+            self.log.log_info(f"Already executed trade for {execution_key}, skipping trade placement")
+            return
 
         # Ensure we have a tradable contract resolved
         if self.trade_contract is None:
