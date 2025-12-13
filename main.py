@@ -66,7 +66,7 @@ def main():
     logger = Logger()
     logger.log_info("Application started")
     
-    ib = IBConfig(port=7497, logging=logger)
+    ib = IBConfig(port=7496, logging=logger)
     
     # Retry initial connection with backoff
     max_attempts = 24  # 24 attempts * 5 seconds = 2 minutes
