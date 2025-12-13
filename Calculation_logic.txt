@@ -1,0 +1,7 @@
+For 15:00 candle execution, I looked at the 14:45 candlesticks from 3 to 7 days ago and add the total point change up. Then divide by 5.
+
+With 1 being today.
+
+Actually 1 is today right after close.
+
+I think 1 is supposed to include the entire day until futures close.

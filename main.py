@@ -66,7 +66,7 @@ def main():
     logger = Logger()
     logger.log_info("Application started")
     
-    ib = IBConfig(port=7496, logging=logger)
+    ib = IBConfig(port=7497, logging=logger)
     
     # Retry initial connection with backoff
     max_attempts = 24  # 24 attempts * 5 seconds = 2 minutes
@@ -131,7 +131,7 @@ def main():
             tz = strat.exchange_tz if strat.exchange_tz else ZoneInfo("America/Chicago")
             now_exch = datetime.now(tz)
             target_time = strat.get_target_execution_time(strat.TIME)  # time in exchange tz
-            target_dt_exch = datetime.combine(now_exch.date(), target_time).replace(tzinfo=tz)
+            target_dt_exch = datetime.combine(now_exch.date(), target_time).replace(tzinfo=tz) + timedelta(minutes=15)
             # If today's target already passed, schedule for tomorrow
             if target_dt_exch < now_exch:
                 target_dt_exch = target_dt_exch + timedelta(days=1)

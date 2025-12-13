@@ -1,0 +1,6 @@
+
+================================================================================
+Leverage Ratio Log for ES - Started at 2025-12-13 18:44:41.328609
+================================================================================
+Timestamp | Base Indicator | Long Bias | Raw Leverage | Net Leverage | Net Liquidation | Position to Achieve | Action | Quantity
+--------------------------------------------------------------------------------
