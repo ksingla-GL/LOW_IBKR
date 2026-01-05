@@ -1,0 +1,83 @@
+ES Futures Backtest Engine - Blueprint
+
+  Strategy Summary
+
+  Momentum strategy trading ES futures once daily. Calculates average price change over a lagged lookback window, adds a long bias, and sizes positions using leverage against available capital.
+
+  ---
+  Parameters
+
+  | Param     | Default | Purpose                      |
+  |-----------|---------|------------------------------|
+  | LEVAMOUNT | 15      | Max leverage (caps position) |
+  | DAYS      | 7       | Lookback start (N bars ago)  |
+  | OFFSET    | 3       | Lookback end (M bars ago)    |
+  | TIME      | 15:00   | Execution time (Chicago)     |
+  | LONG_BIAS | 3       | Bullish tilt added to signal |
+  | DRAWDOWN  | 5       | Max drawdown % before stop   |
+
+  ---
+  Signal Calculation
+
+  1. Filter 15-min bars to target_time = TIME - 15min (one bar/day)
+  2. Change = Close - Open for each bar
+  3. Select bars[-DAYS : -(OFFSET-1)]  →  bars 7,6,5,4,3 days ago
+  4. Indicator = mean(Change)
+
+  ---
+  Position Sizing
+
+  Raw_Leverage = Indicator + LONG_BIAS
+  Net_Leverage = clamp(Raw_Leverage, -LEVAMOUNT, +LEVAMOUNT)
+
+  Target_Value = Net_Leverage × Available_Funds
+  Contract_Value = Price × 50
+  Target_Qty = floor(Target_Value / Contract_Value)
+
+  Trade_Qty = Target_Qty - Current_Position
+  Action = BUY if Trade_Qty > 0 else SELL
+
+  ---
+  Risk Management
+
+  After each trade:
+      Max_Equity = max(Max_Equity, Current_Equity)
+      Drawdown = (Max_Equity - Current_Equity) / Max_Equity
+
+      If Drawdown > DRAWDOWN%:
+          Flatten position, stop trading
+
+  ---
+  Backtest Loop
+
+  For each target_time bar:
+      1. Skip if liquidated or insufficient history
+      2. Calculate indicator from lookback window
+      3. Compute target position
+      4. Execute trade at bar close + slippage
+      5. Deduct commission
+      6. Update equity, check drawdown
+      7. Log trade
+
+  ---
+  Execution Model
+
+  | Item       | Value                       |
+  |------------|-----------------------------|
+  | Fill Price | Bar close ± 0.25pt slippage |
+  | Commission | $2.50/contract round-trip   |
+  | Multiplier | $50/point                   |
+
+  ---
+  Output
+
+  1. Equity curve (date, equity, drawdown)
+  2. Trade log (date, action, qty, price, pnl)
+  3. Metrics: Total Return, CAGR, Max DD, Sharpe, Win Rate, Profit Factor
+
+  ---
+  Starting Conditions
+
+  - Capital: $100,000
+  - Position: 0
+  - Data: ES_15min.csv (~6 months, 15-min bars)
