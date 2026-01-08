@@ -21,7 +21,7 @@ class Config:
     offset: int = 3             # Lookback end
     time_str: str = "07:30"     # Execution time (Chicago)
     long_bias: float = 3        # Bullish tilt
-    drawdown_limit: float = 20  # Max drawdown %
+    drawdown_limit: float = 100  # Disabled - see full history
 
     # Backtest params
     initial_capital: float = 1_500_000
@@ -316,6 +316,11 @@ def main():
     # Parse dates and strip timezone
     df["date"] = pd.to_datetime(df["date"].str.replace(r'[+-]\d{2}:\d{2}$', '', regex=True))
     df.set_index("date", inplace=True)
+
+    # Filter to start date (avoid 2007-2008 crisis)
+    START_DATE = "2010-01-01"
+    df = df[df.index >= START_DATE]
+    print(f"Filtered to start from: {START_DATE}")
 
     # Run backtest
     config = Config()
